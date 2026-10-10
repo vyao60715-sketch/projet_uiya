@@ -109,18 +109,18 @@
 
 ---
 
-## Phase 6 – Application mobile et inventaire
+## Phase 6 – Application mobile et inventaire ✅
 
-- [ ] Projet Flutter : connexion, stockage sécurisé du jeton
-- [ ] Scan QR et fiche du bien ; saisie manuelle de secours
-- [ ] Signalements du responsable depuis le mobile
-- [ ] API et web : création de campagne (EF-33)
-- [ ] Mobile : téléchargement de la liste (EF-34), contrôle par scan (EF-35)
-- [ ] Base locale et mode hors ligne (EF-36)
-- [ ] Synchronisation idempotente et gestion des conflits
-- [ ] Bien non répertorié (EF-37) — P2
-- [ ] Clôture et rapport d'écarts (EF-38)
-- [ ] Tests : inventaire coupé du réseau puis synchronisé sans perte ni doublon
+- [x] Projet Flutter `mobile/` : connexion, stockage sécurisé du jeton (flutter_secure_storage)
+- [x] Scan QR (mobile_scanner) et fiche du bien ; saisie manuelle de secours
+- [x] Signalements du responsable depuis le mobile (panne → POST /demandes)
+- [x] API et web : création de campagne (EF-33) avec périmètre optionnel par service
+- [x] Mobile : campagne en cours, progression, écarts (EF-34/35)
+- [x] Base locale SQLite hors-ligne (sqflite) : cache biens + contrôles en attente (EF-36)
+- [x] Synchronisation idempotente (updateOrCreate) et sync manuelle depuis l'appli
+- [ ] Bien non répertorié (EF-37) — P2, reporté
+- [x] Clôture et rapport d'écarts (EF-38)
+- [x] Tests : 7 cas (création, une seule campagne, sync idempotente, clôture rapport, sync campagne cloturée)
 
 **Terminé quand :** une campagne complète se fait sans réseau et produit le bon rapport d'écarts.
 

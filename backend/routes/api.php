@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AffectationController;
+use App\Http\Controllers\Api\CampagneController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatimentController;
 use App\Http\Controllers\Api\BienController;
@@ -141,6 +142,22 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/maintenances', [MaintenanceController::class, 'index']);
         Route::post('/maintenances', [MaintenanceController::class, 'store']);
         Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | INVENTAIRES / CAMPAGNES (EF-33 à EF-38)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/inventaires', [CampagneController::class, 'index']);
+    Route::get('/inventaires/{campagne}', [CampagneController::class, 'show']);
+    Route::get('/inventaires/{campagne}/rapport', [CampagneController::class, 'rapport']);
+    Route::post('/inventaires/{campagne}/sync', [CampagneController::class, 'sync']);
+
+    Route::middleware('role:admin|gestionnaire')->group(function () {
+        Route::post('/inventaires', [CampagneController::class, 'store']);
+        Route::post('/inventaires/{campagne}/cloturer', [CampagneController::class, 'cloturer']);
     });
 
     /*
