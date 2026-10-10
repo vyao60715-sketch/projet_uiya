@@ -11,8 +11,8 @@ const inp = { width: '100%', boxSizing: 'border-box', minHeight: 42, border: '1p
 export default function NouveauBien() {
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    designation: '', categorie: '', marque: '', modele: '',
-    numero_serie: '', etat: 'Neuf', fournisseur: '', date_acquisition: '',
+    designation: '', categorie_id: '', marque: '', modele: '',
+    numero_serie: '', etat: 'Neuf', fournisseur_id: '', date_acquisition: '',
     prix: '', duree_garantie_mois: '', observations: '', photo: null,
   })
   const [saving, setSaving] = useState(false)
@@ -70,7 +70,7 @@ export default function NouveauBien() {
                 <input id="des" style={inp} value={form.designation} onChange={(e) => set('designation', e.target.value)} required />
               </div>
               <div><label style={field} htmlFor="cat">Catégorie <span style={{ color: '#A23B2A' }}>*</span></label>
-                <select id="cat" style={inp} value={form.categorie} onChange={(e) => set('categorie', e.target.value)} required>
+                <select id="cat" style={inp} value={form.categorie_id} onChange={(e) => set('categorie_id', e.target.value)} required>
                   <option value="">— Sélectionner —</option>
                   {categories.map((c) => <option key={c.id} value={c.id}>{c.nom}</option>)}
                 </select>
@@ -80,7 +80,7 @@ export default function NouveauBien() {
               <div><label style={field} htmlFor="ns">Numéro de série</label><input id="ns" style={{ ...inp, fontFamily: "'IBM Plex Mono', monospace" }} value={form.numero_serie} onChange={(e) => set('numero_serie', e.target.value)} /></div>
               <div><label style={field} htmlFor="etat">État <span style={{ color: '#A23B2A' }}>*</span></label>
                 <select id="etat" style={inp} value={form.etat} onChange={(e) => set('etat', e.target.value)}>
-                  {['Neuf', 'Bon', 'Moyen', 'Dégradé'].map((e) => <option key={e}>{e}</option>)}
+                  {['Neuf', 'Bon', 'Moyen', 'Dégradé', 'Hors service'].map((e) => <option key={e}>{e}</option>)}
                 </select>
               </div>
             </div>
@@ -90,8 +90,8 @@ export default function NouveauBien() {
           <Card>
             <h2 style={ct}>Acquisition et garantie</h2>
             <div style={fg}>
-              <div><label style={field} htmlFor="four">Fournisseur <span style={{ color: '#A23B2A' }}>*</span></label>
-                <select id="four" style={inp} value={form.fournisseur} onChange={(e) => set('fournisseur', e.target.value)}>
+              <div><label style={field} htmlFor="four">Fournisseur</label>
+                <select id="four" style={inp} value={form.fournisseur_id} onChange={(e) => set('fournisseur_id', e.target.value)}>
                   <option value="">— Sélectionner —</option>
                   {fournisseurs.map((f) => <option key={f.id} value={f.id}>{f.nom}</option>)}
                 </select>

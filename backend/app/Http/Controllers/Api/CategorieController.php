@@ -22,9 +22,11 @@ class CategorieController extends Controller
     {
         $data = $request->validate([
             'nom' => ['required', 'string', 'max:255', 'unique:categories,nom'],
+            'code' => ['required', 'string', 'max:10', 'alpha', 'unique:categories,code'],
             'duree_garantie_mois' => ['required', 'integer', 'min:0'],
             'periodicite_maintenance_mois' => ['required', 'integer', 'min:0'],
         ]);
+        $data['code'] = strtoupper($data['code']);
 
         $categorie = Categorie::create($data);
 
@@ -41,9 +43,11 @@ class CategorieController extends Controller
     {
         $data = $request->validate([
             'nom' => ['required', 'string', 'max:255', 'unique:categories,nom,'.$categorie->id],
+            'code' => ['required', 'string', 'max:10', 'alpha', 'unique:categories,code,'.$categorie->id],
             'duree_garantie_mois' => ['required', 'integer', 'min:0'],
             'periodicite_maintenance_mois' => ['required', 'integer', 'min:0'],
         ]);
+        $data['code'] = strtoupper($data['code']);
 
         $avant = $categorie->toArray();
         $categorie->update($data);

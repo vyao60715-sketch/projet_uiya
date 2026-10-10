@@ -62,17 +62,17 @@
 
 ## Phase 3 – Gestion des biens et codes QR
 
-- [ ] Migration et modèle `biens` avec statuts
-- [ ] Enregistrement d'un bien (EF-09) avec photo
-- [ ] Numéro d'inventaire automatique (EF-10)
-- [ ] Calcul fin de garantie et prochaine maintenance (EF-11)
-- [ ] **Attribution automatique du QR juste après l'enregistrement** (EF-16)
-- [ ] Étiquettes PDF à l'unité et en planche (EF-17)
-- [ ] Route de fiche par UUID (EF-18) et recherche manuelle (EF-19)
-- [ ] Recherche et filtres (EF-13), fiche détaillée (EF-14)
-- [ ] Saisie par lot (EF-12) et import Excel (EF-15) — P2
-- [ ] Web : liste, formulaire, fiche, impression des étiquettes
-- [ ] Tests : unicité du QR, calcul des dates, droits
+- [x] Migration et modèle `biens` avec statuts
+- [x] Enregistrement d'un bien (EF-09) avec photo
+- [x] Numéro d'inventaire automatique (EF-10)
+- [x] Calcul fin de garantie et prochaine maintenance (EF-11)
+- [x] **Attribution automatique du QR juste après l'enregistrement** (EF-16)
+- [x] Étiquettes PDF à l'unité et en planche (EF-17)
+- [x] Route de fiche par UUID (EF-18) et recherche manuelle (EF-19)
+- [x] Recherche et filtres (EF-13), fiche détaillée (EF-14)
+- [ ] Saisie par lot (EF-12) et import Excel (EF-15) — P2, pas encore fait
+- [x] Web : liste, formulaire, fiche, impression des étiquettes
+- [x] Tests : unicité du QR, calcul des dates, droits (403 responsable)
 
 **Terminé quand :** un bien créé reçoit son QR, son étiquette s'imprime et le scan (web) ouvre la bonne fiche.
 

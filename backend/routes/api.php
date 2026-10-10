@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatimentController;
+use App\Http\Controllers\Api\BienController;
 use App\Http\Controllers\Api\CategorieController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\FournisseurController;
@@ -69,6 +70,27 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/fournisseurs', [FournisseurController::class, 'store']);
         Route::put('/fournisseurs/{fournisseur}', [FournisseurController::class, 'update']);
         Route::delete('/fournisseurs/{fournisseur}', [FournisseurController::class, 'destroy']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | BIENS ET CODES QR (EF-09 à EF-19)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware('permission:consulter_biens')->group(function () {
+        Route::get('/biens', [BienController::class, 'index']);
+        Route::get('/biens/qr/{uuid}', [BienController::class, 'showByUuid']);
+        Route::get('/biens/etiquettes/planche', [BienController::class, 'etiquettesPlanche']);
+        Route::get('/biens/{bien}', [BienController::class, 'show']);
+        Route::get('/biens/{bien}/photo', [BienController::class, 'photo']);
+        Route::get('/biens/{bien}/etiquette', [BienController::class, 'etiquette']);
+    });
+
+    Route::middleware('permission:gerer_biens')->group(function () {
+        Route::post('/biens', [BienController::class, 'store']);
+        Route::put('/biens/{bien}', [BienController::class, 'update']);
+        Route::delete('/biens/{bien}', [BienController::class, 'destroy']);
     });
 
     /*

@@ -8,5 +8,5 @@ class Categorie extends Model
 {
     protected $table = 'categories';
 
-    protected $fillable = ['nom', 'duree_garantie_mois', 'periodicite_maintenance_mois'];
+    protected $fillable = ['nom', 'code', 'duree_garantie_mois', 'periodicite_maintenance_mois'];
 }

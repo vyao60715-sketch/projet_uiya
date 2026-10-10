@@ -13,6 +13,8 @@ const STATUT_VARIANT = {
 
 const inp = { minHeight: 40, border: '1px solid #C9CFC9', borderRadius: 8, padding: '0 12px', fontFamily: 'inherit', fontSize: 14, background: '#fff', color: '#17262B', boxSizing: 'border-box' }
 
+const formatDate = (iso) => iso ? new Date(iso).toLocaleDateString('fr-FR') : '—'
+
 export default function Biens() {
   const [biens, setBiens] = useState([])
   const [q, setQ] = useState('')
@@ -76,7 +78,6 @@ export default function Biens() {
                 <th style={th}>N° inventaire</th>
                 <th style={th}>Désignation</th>
                 <th style={th}>Catégorie</th>
-                <th style={th}>Service · Salle</th>
                 <th style={th}>Statut</th>
                 <th style={th}>État</th>
                 <th style={th}>Fin garantie</th>
@@ -84,18 +85,17 @@ export default function Biens() {
             </thead>
             <tbody>
               {filtered.length === 0 && (
-                <tr><td colSpan={8} style={{ ...td, textAlign: 'center', color: '#5A676B' }}>Aucun bien enregistré.</td></tr>
+                <tr><td colSpan={7} style={{ ...td, textAlign: 'center', color: '#5A676B' }}>Aucun bien enregistré.</td></tr>
               )}
               {filtered.map((b) => (
                 <tr key={b.id} style={{ cursor: 'pointer' }}>
                   <td style={td}><input type="checkbox" /></td>
-                  <td style={td}><Link to={`/biens/${b.id}`} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: '#0E5A6B', textDecoration: 'none' }}>{b.numero}</Link></td>
+                  <td style={td}><Link to={`/biens/${b.id}`} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, color: '#0E5A6B', textDecoration: 'none' }}>{b.numero_inventaire}</Link></td>
                   <td style={td}>{b.designation}</td>
-                  <td style={td}>{b.categorie}</td>
-                  <td style={td}>{b.service}{b.salle ? ` · ${b.salle}` : ''}</td>
+                  <td style={td}>{b.categorie?.nom ?? '—'}</td>
                   <td style={td}><Badge variant={STATUT_VARIANT[b.statut] || 'mute'}>{b.statut}</Badge></td>
                   <td style={td}>{b.etat}</td>
-                  <td style={td}>{b.fin_garantie}</td>
+                  <td style={td}>{formatDate(b.fin_garantie)}</td>
                 </tr>
               ))}
             </tbody>

@@ -6,6 +6,7 @@ import Connexion from './pages/auth/Connexion'
 import Dashboard from './pages/dashboard/Dashboard'
 import Biens from './pages/biens/Biens'
 import NouveauBien from './pages/biens/NouveauBien'
+import FicheBien from './pages/biens/FicheBien'
 import Demandes from './pages/demandes/Demandes'
 import Maintenance from './pages/maintenance/Maintenance'
 import Inventaire from './pages/inventaire/Inventaire'
@@ -23,6 +24,8 @@ export default function App() {
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/biens" element={<PrivateRoute><Biens /></PrivateRoute>} />
           <Route path="/biens/nouveau" element={<PrivateRoute><NouveauBien /></PrivateRoute>} />
+          <Route path="/biens/scan/:uuid" element={<PrivateRoute><FicheBien /></PrivateRoute>} />
+          <Route path="/biens/:id" element={<PrivateRoute><FicheBien /></PrivateRoute>} />
           <Route path="/demandes" element={<PrivateRoute><Demandes /></PrivateRoute>} />
           <Route path="/maintenance" element={<PrivateRoute><Maintenance /></PrivateRoute>} />
           <Route path="/inventaire" element={<PrivateRoute><Inventaire /></PrivateRoute>} />

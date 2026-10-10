@@ -89,7 +89,7 @@ uiya-patrimoine/
 | users | nom, email, mot_de_passe, service_id, actif | a un rôle, appartient à un service |
 | services | nom, code | a des salles, des utilisateurs, des biens |
 | batiments / salles | nom, code | une salle appartient à un bâtiment |
-| categories | nom, duree_garantie_mois, periodicite_maintenance_mois | a des biens |
+| categories | nom, code (3 lettres, pour le numéro d'inventaire), duree_garantie_mois, periodicite_maintenance_mois | a des biens |
 | fournisseurs | nom, contact, type (fournisseur / prestataire) | — |
 | biens | numero_inventaire, uuid_qr, designation, marque, modele, numero_serie, date_acquisition, prix, etat, statut, fin_garantie, prochaine_maintenance, photo | catégorie, fournisseur, affectation courante |
 | affectations | bien_id, service_id, salle_id, responsable_id, type (permanente / pret), date_debut, date_retour_prevue, date_retour_effective | — |

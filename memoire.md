@@ -39,6 +39,9 @@ Charte retenue : bleu pétrole `#0E5A6B` (accent), ardoise `#17262B` (menu, text
 | D-09 | Convention de nommage retenue : français pour les tables/colonnes métier (snake_case), anglais pour le code applicatif (classes, méthodes) | Cohérence avec les maquettes et le vocabulaire métier UIYA, code Laravel idiomatique |
 | D-10 | Rôles : `admin`, `gestionnaire`, `responsable`, `agent` (spatie/laravel-permission) | Correspond aux 4 profils de `memoire.md` §1 |
 | D-11 | Double protection sur la connexion : throttle IP (20/min, large) + blocage de compte après 5 échecs (15 min), indépendants | Le throttle seul (par IP) ne protège pas un compte ciblé depuis plusieurs IP ; le blocage de compte seul ne protège pas contre le brute-force massif multi-comptes |
+| D-12 | Format du numéro d'inventaire implémenté : `UIYA-{CODE_CATEGORIE}-{ANNEE}-{SEQ}` (ex. UIYA-INF-2026-0001), code catégorie = 3 lettres ajoutées au référentiel `categories` | Format déjà utilisé partout dans les maquettes (`interfaces/`) ; **reste à faire valider formellement par l'UIYA** (question ouverte §10 pas encore fermée) |
+| D-13 | Le QR encode `{FRONTEND_URL}/biens/scan/{uuid}` (jamais de données du bien) | Respecte D-02 ; scanner redirige vers la fiche web, qui revérifie les droits avant d'afficher quoi que ce soit |
+| D-14 | Photo du bien stockée sur le disque `local` (hors `public/`), servie uniquement par `GET /api/biens/{id}/photo` avec jeton | Exigence `securite.md` §5 : fichiers hors dossier public, servis par route contrôlée |
 
 ## 5. Règles de gestion à ne jamais casser
 
@@ -79,8 +82,9 @@ Charte retenue : bleu pétrole `#0E5A6B` (accent), ardoise `#17262B` (menu, text
 | --- | --- | --- |
 | Phase 0 – Cadrage | Terminée (hors validation UIYA) | 2026-10-10 |
 | Phase 1 – Conception | Partielle (maquettes faites ; UML/BDD à faire) | 2026-10-10 |
-| Phase 2 – Socle technique et authentification | Quasi terminée (API faite et testée ; écrans web pas encore branchés à l'API réelle) | 2026-10-10 |
-| Phases 3 à 8 | À faire | — |
+| Phase 2 – Socle technique et authentification | Quasi terminée (API faite et testée ; écrans référentiels pas encore branchés) | 2026-10-10 |
+| Phase 3 – Gestion des biens et codes QR | Quasi terminée (EF-09,10,11,13,14,16,17,18,19 faits ; EF-12/15 saisie par lot et import Excel restent, P2) | 2026-10-10 |
+| Phases 4 à 8 | À faire | — |
 
 ## 9. Journal des sessions
 
@@ -89,6 +93,8 @@ Charte retenue : bleu pétrole `#0E5A6B` (accent), ardoise `#17262B` (menu, text
 - 2026-10-10 — Cahier des charges fonctionnel rédigé ; création des fichiers de pilotage (`architecture.md`, `memoire.md`, `cycl.md`, `securite.md`, `phase.md`).
 - 2026-10-10 — Maquettes des 18 interfaces (11 web, 7 mobile) ajoutées dans `interfaces/`.
 - 2026-10-10 — Dépôt Git initialisé (`origin` = github.com/vyao60715-sketch/projet_uiya). Backend Laravel créé (`backend/`) : migrations users/services/batiments/salles/categories/fournisseurs/journal_audit, Sanctum + spatie/laravel-permission, 4 rôles + admin (`admin@uiya.ci`), API connexion/déconnexion/mot de passe oublié/profil/référentiels/comptes, journal d'audit générique (`AuditService`), 16 tests Feature (connexion, blocage après 5 échecs, droits 403, validation 422) — tous verts. Non fait : écrans web pas encore branchés à l'API réelle (toujours en mock sauf la connexion) ; UML et script BDD de la phase 1 toujours à faire.
+- 2026-10-10 — Base vidée des données fictives (`migrate:fresh`, ne reste que rôles + admin) ; retrait de tous les tableaux MOCK du frontend (Dashboard, Biens, Utilisateurs, Demandes, Maintenance, Inventaire), chaque écran affiche un vrai état vide.
+- 2026-10-10 — **Phase 3** : migration `biens` (ajout colonne `code` à `categories`), modèle `Bien` avec génération auto du numéro d'inventaire (`NumeroInventaireService`), de l'UUID QR et des dates (garantie/maintenance) à la création ; `QrService` (SVG, simplesoftwareio/simple-qrcode) ; `BienStatutService` central (D-04) ; `BienController` complet (CRUD, recherche/filtres, fiche par UUID, photo privée servie par route contrôlée, étiquettes PDF unité + planche via barryvdh/laravel-dompdf) ; écrans web `Biens`, `NouveauBien`, nouvelle page `FicheBien` + routes `/biens/:id` et `/biens/scan/:uuid`. 12 nouveaux tests Feature (28 au total) — tous verts. Activé `pdo_sqlite` et `gd` dans `php.ini` (nécessaires aux tests et au QR). Limite connue : étiquettes PDF générées sur feuille A4 (pas de format timbre/étiquette dédié — bug DomPDF sur papier personnalisé très petit, voir code). Non fait : EF-12 (saisie par lot) et EF-15 (import Excel), classées P2.
 
 ## 10. Questions ouvertes
 
