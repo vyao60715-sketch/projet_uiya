@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import Card from '../../components/Card'
 import { createBien } from '../../api/biens'
+import { getCategories, getFournisseurs } from '../../api/referentiels'
 
 const field = { display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6 }
 const inp = { width: '100%', boxSizing: 'border-box', minHeight: 42, border: '1px solid #C9CFC9', borderRadius: 8, padding: '8px 12px', fontFamily: 'inherit', fontSize: 14, background: '#fff', color: '#17262B' }
@@ -10,12 +11,19 @@ const inp = { width: '100%', boxSizing: 'border-box', minHeight: 42, border: '1p
 export default function NouveauBien() {
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    designation: '', categorie: 'Informatique', marque: '', modele: '',
+    designation: '', categorie: '', marque: '', modele: '',
     numero_serie: '', etat: 'Neuf', fournisseur: '', date_acquisition: '',
     prix: '', duree_garantie_mois: '', observations: '', photo: null,
   })
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  const [categories, setCategories] = useState([])
+  const [fournisseurs, setFournisseurs] = useState([])
+
+  useEffect(() => {
+    getCategories().then((r) => setCategories(r.data.data ?? [])).catch(() => {})
+    getFournisseurs().then((r) => setFournisseurs(r.data.data ?? [])).catch(() => {})
+  }, [])
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }))
 
@@ -34,7 +42,7 @@ export default function NouveauBien() {
       const fd = new FormData()
       Object.entries(form).forEach(([k, v]) => { if (v !== null && v !== '') fd.append(k, v) })
       const res = await createBien(fd)
-      navigate(`/biens/${res.data.id}`)
+      navigate(`/biens/${res.data.data.id}`)
     } catch (err) {
       setError(err.response?.data?.message || 'Erreur lors de l\'enregistrement.')
     } finally {
@@ -62,8 +70,9 @@ export default function NouveauBien() {
                 <input id="des" style={inp} value={form.designation} onChange={(e) => set('designation', e.target.value)} required />
               </div>
               <div><label style={field} htmlFor="cat">Catégorie <span style={{ color: '#A23B2A' }}>*</span></label>
-                <select id="cat" style={inp} value={form.categorie} onChange={(e) => set('categorie', e.target.value)}>
-                  {['Informatique', 'Mobilier', 'Climatisation', 'Audiovisuel'].map((c) => <option key={c}>{c}</option>)}
+                <select id="cat" style={inp} value={form.categorie} onChange={(e) => set('categorie', e.target.value)} required>
+                  <option value="">— Sélectionner —</option>
+                  {categories.map((c) => <option key={c.id} value={c.id}>{c.nom}</option>)}
                 </select>
               </div>
               <div><label style={field} htmlFor="mar">Marque</label><input id="mar" style={inp} value={form.marque} onChange={(e) => set('marque', e.target.value)} /></div>
@@ -84,6 +93,7 @@ export default function NouveauBien() {
               <div><label style={field} htmlFor="four">Fournisseur <span style={{ color: '#A23B2A' }}>*</span></label>
                 <select id="four" style={inp} value={form.fournisseur} onChange={(e) => set('fournisseur', e.target.value)}>
                   <option value="">— Sélectionner —</option>
+                  {fournisseurs.map((f) => <option key={f.id} value={f.id}>{f.nom}</option>)}
                 </select>
               </div>
               <div><label style={field} htmlFor="da">Date d'acquisition <span style={{ color: '#A23B2A' }}>*</span></label><input id="da" type="date" style={inp} value={form.date_acquisition} onChange={(e) => set('date_acquisition', e.target.value)} required /></div>

@@ -1,32 +1,30 @@
+import { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
 import Card from '../../components/Card'
 import Badge from '../../components/Badge'
+import { getMaintenances } from '../../api/maintenance'
 
-const preventives = [
-  { label: 'Climatiseur split – Salle B12', num: 'UIYA-CLI-2024-0017', badge: 'warn', info: '25/10 · J-15' },
-  { label: 'Groupe électrogène – Bâtiment A', num: 'UIYA-ELE-2022-0002', badge: 'info', info: '02/11' },
-  { label: 'Photocopieur Canon – Reprographie', num: 'UIYA-INF-2023-0051', badge: 'info', info: '15/11' },
-]
+const TABS = ['En cours', 'Terminées', 'Toutes']
 
-const garanties = [
-  { label: 'Imprimante HP LaserJet – Accueil Scolarité', num: 'UIYA-INF-2025-0088', badge: 'warn', info: '09/11 · J-30' },
-  { label: 'Vidéoprojecteur Epson – Amphi B', num: 'UIYA-AUD-2024-0021', badge: 'info', info: '18/12' },
-  { label: 'Ordinateurs Lenovo (lot de 12)', num: 'UIYA-INF-2024-0120 à 0131', badge: 'info', info: '05/02/2027' },
-]
-
-const interventions = [
-  { bien: 'Ordinateur Lenovo', num: 'UIYA-INF-2024-0132', type: 'Corrective', prestataire: '—', debut: '10/10/2026', cout: '—', garantie: 'ok', gLabel: 'Couverte', statut: 'warn', sLabel: 'En cours' },
-  { bien: 'Climatiseur – Salle C03', num: 'UIYA-CLI-2021-0006', type: 'Corrective', prestataire: '—', debut: '02/10/2026', cout: '85 000', garantie: 'mute', gLabel: 'Hors garantie', statut: 'warn', sLabel: 'En cours' },
-  { bien: 'Photocopieur Canon', num: 'UIYA-INF-2023-0051', type: 'Préventive', prestataire: '—', debut: '28/09/2026', cout: '40 000', garantie: 'mute', gLabel: 'Hors garantie', statut: 'ok', sLabel: 'Terminée' },
-  { bien: 'Vidéoprojecteur Epson', num: 'UIYA-AUD-2019-0003', type: 'Corrective', prestataire: '—', debut: '20/09/2026', cout: '—', garantie: 'mute', gLabel: 'Hors garantie', statut: 'bad', sLabel: 'Irréparable · réforme proposée' },
-]
-
-const TABS = ['En cours · 12', 'Terminées', 'Toutes']
+const vide = { padding: '16px 0', textAlign: 'center', color: '#5A676B', fontSize: 14 }
 
 export default function Maintenance() {
   const th = { textAlign: 'left', fontWeight: 500, color: '#5A676B', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.04em', padding: '10px 12px', borderBottom: '1px solid #DDE1DC', whiteSpace: 'nowrap' }
   const td = { padding: 12, borderBottom: '1px solid #EEF0EC', verticalAlign: 'middle', fontSize: 14 }
   const row = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, padding: '12px 0', borderBottom: '1px solid #EEF0EC', fontSize: 14 }
+
+  const [preventives, setPreventives] = useState([])
+  const [garanties, setGaranties] = useState([])
+  const [interventions, setInterventions] = useState([])
+
+  useEffect(() => {
+    getMaintenances().then((r) => {
+      const data = r.data.data ?? {}
+      setPreventives(data.preventives ?? [])
+      setGaranties(data.garanties ?? [])
+      setInterventions(data.interventions ?? [])
+    }).catch(() => {})
+  }, [])
 
   return (
     <Layout>
@@ -44,6 +42,7 @@ export default function Maintenance() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 16 }}>
         <Card>
           <h2 style={ct}>Maintenances préventives à venir</h2>
+          {preventives.length === 0 && <div style={vide}>Aucune maintenance préventive planifiée.</div>}
           {preventives.map((p, i) => (
             <div key={i} style={{ ...row, ...(i === preventives.length - 1 ? { borderBottom: 0 } : {}) }}>
               <div>
@@ -57,6 +56,7 @@ export default function Maintenance() {
 
         <Card>
           <h2 style={ct}>Garanties qui expirent</h2>
+          {garanties.length === 0 && <div style={vide}>Aucune garantie proche de l'expiration.</div>}
           {garanties.map((g, i) => (
             <div key={i} style={{ ...row, ...(i === garanties.length - 1 ? { borderBottom: 0 } : {}) }}>
               <div>
@@ -86,6 +86,9 @@ export default function Maintenance() {
               </tr>
             </thead>
             <tbody>
+              {interventions.length === 0 && (
+                <tr><td colSpan={7} style={{ ...td, textAlign: 'center', color: '#5A676B' }}>Aucune intervention enregistrée.</td></tr>
+              )}
               {interventions.map((iv, i) => (
                 <tr key={i}>
                   <td style={td}>

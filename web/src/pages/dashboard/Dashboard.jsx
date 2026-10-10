@@ -5,21 +5,12 @@ import Card from '../../components/Card'
 import Badge from '../../components/Badge'
 import { getDashboard } from '../../api/dashboard'
 
-const MOCK = {
-  total: 1248, affectes: 1012, enPret: 23, maintenance: 37,
-  correctivesEnCours: 12, demandesAttente: 4, reformes: 51, perdus: 6, disponibles: 142,
-  alertes: [
-    { label: 'Fin de garantie – Imprimante HP LaserJet', num: 'UIYA-INF-2025-0088', variant: 'warn', info: 'dans 30 j' },
-    { label: 'Maintenance préventive – Climatiseur Salle B12', num: 'UIYA-CLI-2024-0017', variant: 'info', info: 'dans 15 j' },
-    { label: 'Retour de prêt – Vidéoprojecteur Epson', num: 'UIYA-AUD-2023-0005', variant: 'warn', info: 'demain' },
-    { label: 'Prêt non rendu – Ordinateur portable Dell', num: 'UIYA-INF-2024-0142', variant: 'bad', info: '3 j de retard' },
-  ],
-  demandes: [
-    { label: 'Panne – Ordinateur de bureau', service: 'Service Scolarité · il y a 2 h', variant: 'warn', statut: 'Soumise' },
-    { label: 'Transfert – 6 chaises vers Salle A04', service: 'Service Comptabilité · hier', variant: 'warn', statut: 'Soumise' },
-    { label: 'Perte – Vidéoprojecteur', service: 'Département Informatique · hier', variant: 'warn', statut: 'Soumise' },
-  ],
-  campagne: { nom: 'Inventaire annuel – Bâtiment A', controles: 256, total: 400, absents: 5, deplaces: 8, deteriores: 3 },
+const EMPTY = {
+  total: 0, affectes: 0, enPret: 0, maintenance: 0,
+  correctivesEnCours: 0, demandesAttente: 0, reformes: 0, perdus: 0, disponibles: 0,
+  alertes: [],
+  demandes: [],
+  campagne: null,
 }
 
 function BarStat({ label, value, max }) {
@@ -29,20 +20,22 @@ function BarStat({ label, value, max }) {
         <span>{label}</span><span>{value}</span>
       </div>
       <div style={{ height: 10, borderRadius: 5, background: '#ECEEEA', overflow: 'hidden' }}>
-        <div style={{ width: `${Math.round((value / max) * 100)}%`, height: '100%', background: '#0E5A6B' }} />
+        <div style={{ width: `${max ? Math.round((value / max) * 100) : 0}%`, height: '100%', background: '#0E5A6B' }} />
       </div>
     </div>
   )
 }
 
+const vide = { padding: '24px 0', textAlign: 'center', color: '#5A676B', fontSize: 14 }
+
 export default function Dashboard() {
-  const [data, setData] = useState(MOCK)
+  const [data, setData] = useState(EMPTY)
 
   useEffect(() => {
-    getDashboard().then((r) => setData(r.data)).catch(() => {})
+    getDashboard().then((r) => setData((prev) => ({ ...prev, ...r.data.data }))).catch(() => {})
   }, [])
 
-  const pct = Math.round((data.campagne.controles / data.campagne.total) * 100)
+  const pct = data.campagne ? Math.round((data.campagne.controles / data.campagne.total) * 100) : 0
 
   return (
     <Layout pendingCount={data.demandesAttente}>
@@ -59,7 +52,7 @@ export default function Dashboard() {
 
       {/* KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 16 }}>
-        <Card><div style={kl}>Total des biens</div><div style={kv}>{data.total.toLocaleString('fr')}</div><div style={kn}>dans 14 services</div></Card>
+        <Card><div style={kl}>Total des biens</div><div style={kv}>{data.total.toLocaleString('fr')}</div><div style={kn}>&nbsp;</div></Card>
         <Card><div style={kl}>Affectés</div><div style={kv}>{data.affectes.toLocaleString('fr')}</div><div style={kn}>dont {data.enPret} en prêt</div></Card>
         <Card><div style={kl}>En maintenance</div><div style={kv}>{data.maintenance}</div><div style={kn}>{data.correctivesEnCours} correctives en cours</div></Card>
         <Card style={{ borderColor: '#E7C48C' }}>
@@ -73,6 +66,7 @@ export default function Dashboard() {
         {/* Alertes */}
         <Card>
           <h2 style={ct}>Alertes à venir</h2>
+          {data.alertes.length === 0 && <div style={vide}>Aucune alerte.</div>}
           {data.alertes.map((a, i) => (
             <div key={i} style={row}>
               <div>
@@ -87,13 +81,17 @@ export default function Dashboard() {
         {/* Répartition */}
         <Card>
           <h2 style={ct}>Répartition par statut</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            <BarStat label="Affectés" value={data.affectes} max={data.total} />
-            <BarStat label="Disponibles" value={data.disponibles} max={data.total} />
-            <BarStat label="En maintenance" value={data.maintenance} max={data.total} />
-            <BarStat label="Réformés" value={data.reformes} max={data.total} />
-            <BarStat label="Perdus" value={data.perdus} max={data.total} />
-          </div>
+          {data.total === 0 ? (
+            <div style={vide}>Aucun bien enregistré.</div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <BarStat label="Affectés" value={data.affectes} max={data.total} />
+              <BarStat label="Disponibles" value={data.disponibles} max={data.total} />
+              <BarStat label="En maintenance" value={data.maintenance} max={data.total} />
+              <BarStat label="Réformés" value={data.reformes} max={data.total} />
+              <BarStat label="Perdus" value={data.perdus} max={data.total} />
+            </div>
+          )}
         </Card>
       </div>
 
@@ -104,6 +102,7 @@ export default function Dashboard() {
             <h2 style={ct}>Demandes en attente</h2>
             <Link to="/demandes" style={{ fontSize: 14, color: '#0E5A6B' }}>Tout voir</Link>
           </div>
+          {data.demandes.length === 0 && <div style={vide}>Aucune demande en attente.</div>}
           {data.demandes.map((d, i) => (
             <div key={i} style={row}>
               <div>
@@ -121,19 +120,25 @@ export default function Dashboard() {
             <h2 style={ct}>Campagne en cours</h2>
             <Link to="/inventaire" style={{ fontSize: 14, color: '#0E5A6B' }}>Ouvrir</Link>
           </div>
-          <div style={{ fontSize: 14, marginBottom: 8 }}>{data.campagne.nom}</div>
-          <div style={{ height: 14, borderRadius: 7, background: '#ECEEEA', overflow: 'hidden' }}>
-            <div style={{ width: `${pct}%`, height: '100%', background: '#0E5A6B' }} />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#5A676B', marginTop: 8 }}>
-            <span>{data.campagne.controles} / {data.campagne.total} biens contrôlés</span>
-            <span>{pct} %</span>
-          </div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 16 }}>
-            <Badge variant="bad">{data.campagne.absents} absents</Badge>
-            <Badge variant="warn">{data.campagne.deplaces} déplacés</Badge>
-            <Badge variant="mute">{data.campagne.deteriores} détériorés</Badge>
-          </div>
+          {!data.campagne ? (
+            <div style={vide}>Aucune campagne d'inventaire en cours.</div>
+          ) : (
+            <>
+              <div style={{ fontSize: 14, marginBottom: 8 }}>{data.campagne.nom}</div>
+              <div style={{ height: 14, borderRadius: 7, background: '#ECEEEA', overflow: 'hidden' }}>
+                <div style={{ width: `${pct}%`, height: '100%', background: '#0E5A6B' }} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#5A676B', marginTop: 8 }}>
+                <span>{data.campagne.controles} / {data.campagne.total} biens contrôlés</span>
+                <span>{pct} %</span>
+              </div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 16 }}>
+                <Badge variant="bad">{data.campagne.absents} absents</Badge>
+                <Badge variant="warn">{data.campagne.deplaces} déplacés</Badge>
+                <Badge variant="mute">{data.campagne.deteriores} détériorés</Badge>
+              </div>
+            </>
+          )}
         </Card>
       </div>
     </Layout>

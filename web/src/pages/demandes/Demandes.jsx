@@ -4,13 +4,6 @@ import Card from '../../components/Card'
 import Badge from '../../components/Badge'
 import { getDemandes, validerDemande, rejeterDemande } from '../../api/demandes'
 
-const MOCK = [
-  { id: 1, ref: 'DEM-2026-0193', type: 'PA', label: 'Panne – Ordinateur de bureau Lenovo', service: 'Service Scolarité · il y a 2 h', statut: 'Soumise', bien: 'UIYA-INF-2024-0132', salleService: 'Scolarité · Bureau S02', demandeur: 'Responsable Scolarité', date: '10/10/2026 à 08:42', garantie: 'Sous garantie jusqu\'au 05/02/2027', motif: "L'ordinateur ne démarre plus depuis ce matin, écran noir après le logo. Le poste est utilisé pour les inscriptions." },
-  { id: 2, ref: 'DEM-2026-0192', type: 'TR', label: 'Transfert – 6 chaises vers Salle A04', service: 'Service Comptabilité · hier', statut: 'Soumise', bien: '', salleService: 'Comptabilité', demandeur: 'Responsable Comptabilité', date: '09/10/2026', garantie: '', motif: 'Besoin de chaises supplémentaires pour la salle de réunion A04.' },
-  { id: 3, ref: 'DEM-2026-0191', type: 'PE', label: 'Perte – Vidéoprojecteur Epson EB-E01', service: 'Département Informatique · hier', statut: 'Soumise', bien: 'UIYA-AUD-2022-0011', salleService: 'Dépt. Informatique', demandeur: 'Responsable Informatique', date: '09/10/2026', garantie: '', motif: 'Le vidéoprojecteur a disparu lors du déménagement des bureaux.' },
-  { id: 4, ref: 'DEM-2026-0190', type: 'PA', label: 'Panne – Climatiseur Salle B12', service: 'Bibliothèque · 07/10', statut: 'Soumise', bien: 'UIYA-CLI-2024-0017', salleService: 'Bibliothèque · B12', demandeur: 'Responsable Bibliothèque', date: '07/10/2026', garantie: '', motif: 'Le climatiseur ne refroidit plus correctement.' },
-]
-
 const TYPE_STYLE = {
   PA: { background: '#FBEFD9', color: '#8A510A' },
   TR: { background: '#E3EFF1', color: '#0E5A6B' },
@@ -20,11 +13,21 @@ const TYPE_STYLE = {
 const TABS = ['En attente', 'Validées', 'Rejetées', 'Toutes']
 
 export default function Demandes() {
-  const [demandes, setDemandes] = useState(MOCK)
-  const [selected, setSelected] = useState(MOCK[0])
+  const [demandes, setDemandes] = useState([])
+  const [selected, setSelected] = useState(null)
   const [tab, setTab] = useState(0)
   const [commentaire, setCommentaire] = useState('')
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    getDemandes()
+      .then((r) => {
+        const list = r.data.data ?? []
+        setDemandes(list)
+        setSelected(list[0] ?? null)
+      })
+      .catch(() => setDemandes([]))
+  }, [])
 
   const handleValider = async () => {
     setLoading(true)
@@ -45,7 +48,7 @@ export default function Demandes() {
     setLoading(false)
   }
 
-  const counts = [MOCK.filter((d) => d.statut === 'Soumise').length, 0, 0, MOCK.length]
+  const counts = [demandes.filter((d) => d.statut === 'Soumise').length, 0, 0, demandes.length]
 
   return (
     <Layout pendingCount={counts[0]}>
@@ -66,7 +69,10 @@ export default function Demandes() {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-start' }}>
         {/* Liste */}
         <Card style={{ flex: '1 1 340px', padding: 10, display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {MOCK.map((d) => (
+          {demandes.length === 0 && (
+            <div style={{ padding: '24px 12px', textAlign: 'center', color: '#5A676B', fontSize: 14 }}>Aucune demande.</div>
+          )}
+          {demandes.map((d) => (
             <div key={d.id} onClick={() => setSelected(d)} style={{ display: 'flex', gap: 14, padding: 14, borderRadius: 8, border: `1px solid ${selected?.id === d.id ? '#0E5A6B' : 'transparent'}`, background: selected?.id === d.id ? '#F3F8F9' : 'transparent', cursor: 'pointer' }}>
               <div style={{ width: 36, height: 36, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 12, fontWeight: 600, ...TYPE_STYLE[d.type] }}>{d.type}</div>
               <div>
