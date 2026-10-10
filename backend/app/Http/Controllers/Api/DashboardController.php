@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Affectation;
 use App\Models\Bien;
 use App\Models\Demande;
 use App\Models\Maintenance;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
@@ -42,11 +44,12 @@ class DashboardController extends Controller
                     ->take(5)
                     ->get()
                     ->map(fn (Demande $d) => [
-                        'label' => ucfirst($d->type).' – '.($d->bien?->designation ?? ''),
+                        'label'   => ucfirst($d->type).' – '.($d->bien?->designation ?? ''),
                         'service' => $d->bien?->numero_inventaire,
                         'variant' => 'warn',
-                        'statut' => 'Soumise',
+                        'statut'  => 'Soumise',
                     ]),
+                'alertes' => $this->buildAlertes(),
             ]);
         }
 
@@ -58,6 +61,65 @@ class DashboardController extends Controller
             'message' => null,
             'errors' => null,
         ]);
+    }
+
+    private function buildAlertes(): array
+    {
+        $alertes = [];
+
+        // Garanties expirant dans 30 jours
+        Bien::whereNotNull('fin_garantie')
+            ->whereDate('fin_garantie', '>=', Carbon::today())
+            ->whereDate('fin_garantie', '<=', Carbon::today()->addDays(30))
+            ->orderBy('fin_garantie')
+            ->take(5)
+            ->each(function (Bien $b) use (&$alertes) {
+                $jours = (int) Carbon::today()->diffInDays($b->fin_garantie);
+                $alertes[] = [
+                    'type'    => 'garantie',
+                    'label'   => $b->designation,
+                    'num'     => $b->numero_inventaire,
+                    'info'    => "Garantie J-{$jours}",
+                    'variant' => $jours <= 7 ? 'bad' : 'warn',
+                ];
+            });
+
+        // Maintenances préventives dans 15 jours
+        Bien::whereNotNull('prochaine_maintenance')
+            ->whereDate('prochaine_maintenance', '>=', Carbon::today())
+            ->whereDate('prochaine_maintenance', '<=', Carbon::today()->addDays(15))
+            ->orderBy('prochaine_maintenance')
+            ->take(5)
+            ->each(function (Bien $b) use (&$alertes) {
+                $jours = (int) Carbon::today()->diffInDays($b->prochaine_maintenance);
+                $alertes[] = [
+                    'type'    => 'maintenance',
+                    'label'   => $b->designation,
+                    'num'     => $b->numero_inventaire,
+                    'info'    => "Maintenance J-{$jours}",
+                    'variant' => 'warn',
+                ];
+            });
+
+        // Prêts en retard ou dus aujourd'hui
+        Affectation::with('bien')
+            ->where('type', 'pret')
+            ->whereNull('date_retour_effective')
+            ->whereDate('date_retour_prevue', '<=', Carbon::today())
+            ->orderBy('date_retour_prevue')
+            ->take(5)
+            ->each(function (Affectation $a) use (&$alertes) {
+                $retard = (int) Carbon::parse($a->date_retour_prevue)->diffInDays(Carbon::today());
+                $alertes[] = [
+                    'type'    => 'pret',
+                    'label'   => $a->bien?->designation ?? '—',
+                    'num'     => $a->bien?->numero_inventaire ?? '',
+                    'info'    => $retard === 0 ? 'Retour aujourd\'hui' : "Retard {$retard}j",
+                    'variant' => $retard === 0 ? 'warn' : 'bad',
+                ];
+            });
+
+        return $alertes;
     }
 
     public function notifications(Request $request)
