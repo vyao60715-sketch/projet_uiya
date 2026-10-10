@@ -52,7 +52,7 @@
 - [x] API : connexion, déconnexion, mot de passe oublié, profil (EF-01 à EF-03)
 - [x] API : gestion des comptes (EF-04), blocage après 5 échecs (EF-05)
 - [x] API : référentiels (EF-06 à EF-08)
-- [ ] Web : écran de connexion, menu selon le rôle, écrans des référentiels *(écrans en maquette/mock ; branchement réel à l'API à finir)*
+- [x] Web : écran de connexion, menu selon le rôle, écrans des référentiels
 - [x] Mise en place du journal d'audit (service générique)
 - [x] Tests : connexion, droits par rôle (403), validation
 

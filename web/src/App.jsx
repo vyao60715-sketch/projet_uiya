@@ -12,6 +12,7 @@ import Maintenance from './pages/maintenance/Maintenance'
 import Inventaire from './pages/inventaire/Inventaire'
 import Rapports from './pages/rapports/Rapports'
 import Utilisateurs from './pages/administration/Utilisateurs'
+import Referentiels from './pages/referentiels/Referentiels'
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/inventaire" element={<PrivateRoute><Inventaire /></PrivateRoute>} />
           <Route path="/rapports" element={<PrivateRoute><Rapports /></PrivateRoute>} />
           <Route path="/administration" element={<PrivateRoute roles={['admin', 'administrateur']}><Utilisateurs /></PrivateRoute>} />
+          <Route path="/referentiels" element={<PrivateRoute roles={['admin', 'gestionnaire']}><Referentiels /></PrivateRoute>} />
 
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>

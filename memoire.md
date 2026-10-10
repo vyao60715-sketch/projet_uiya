@@ -82,7 +82,7 @@ Charte retenue : bleu pétrole `#0E5A6B` (accent), ardoise `#17262B` (menu, text
 | --- | --- | --- |
 | Phase 0 – Cadrage | Terminée (hors validation UIYA) | 2026-10-10 |
 | Phase 1 – Conception | Partielle (maquettes faites ; UML/BDD à faire) | 2026-10-10 |
-| Phase 2 – Socle technique et authentification | Quasi terminée (API faite et testée ; écrans référentiels pas encore branchés) | 2026-10-10 |
+| Phase 2 – Socle technique et authentification | Terminée | 2026-10-10 |
 | Phase 3 – Gestion des biens et codes QR | Quasi terminée (EF-09,10,11,13,14,16,17,18,19 faits ; EF-12/15 saisie par lot et import Excel restent, P2) | 2026-10-10 |
 | Phases 4 à 8 | À faire | — |
 
@@ -95,6 +95,7 @@ Charte retenue : bleu pétrole `#0E5A6B` (accent), ardoise `#17262B` (menu, text
 - 2026-10-10 — Dépôt Git initialisé (`origin` = github.com/vyao60715-sketch/projet_uiya). Backend Laravel créé (`backend/`) : migrations users/services/batiments/salles/categories/fournisseurs/journal_audit, Sanctum + spatie/laravel-permission, 4 rôles + admin (`admin@uiya.ci`), API connexion/déconnexion/mot de passe oublié/profil/référentiels/comptes, journal d'audit générique (`AuditService`), 16 tests Feature (connexion, blocage après 5 échecs, droits 403, validation 422) — tous verts. Non fait : écrans web pas encore branchés à l'API réelle (toujours en mock sauf la connexion) ; UML et script BDD de la phase 1 toujours à faire.
 - 2026-10-10 — Base vidée des données fictives (`migrate:fresh`, ne reste que rôles + admin) ; retrait de tous les tableaux MOCK du frontend (Dashboard, Biens, Utilisateurs, Demandes, Maintenance, Inventaire), chaque écran affiche un vrai état vide.
 - 2026-10-10 — **Phase 3** : migration `biens` (ajout colonne `code` à `categories`), modèle `Bien` avec génération auto du numéro d'inventaire (`NumeroInventaireService`), de l'UUID QR et des dates (garantie/maintenance) à la création ; `QrService` (SVG, simplesoftwareio/simple-qrcode) ; `BienStatutService` central (D-04) ; `BienController` complet (CRUD, recherche/filtres, fiche par UUID, photo privée servie par route contrôlée, étiquettes PDF unité + planche via barryvdh/laravel-dompdf) ; écrans web `Biens`, `NouveauBien`, nouvelle page `FicheBien` + routes `/biens/:id` et `/biens/scan/:uuid`. 12 nouveaux tests Feature (28 au total) — tous verts. Activé `pdo_sqlite` et `gd` dans `php.ini` (nécessaires aux tests et au QR). Limite connue : étiquettes PDF générées sur feuille A4 (pas de format timbre/étiquette dédié — bug DomPDF sur papier personnalisé très petit, voir code). Non fait : EF-12 (saisie par lot) et EF-15 (import Excel), classées P2.
+- 2026-10-10 — Écran web **Référentiels** (`/referentiels`, admin + gestionnaire) : catégories, services, bâtiments, salles, fournisseurs — liste, création, suppression, le tout branché sur l'API réelle. `referentiels.js` complété (il ne couvrait que la lecture pour la plupart des référentiels). Ferme le dernier point ouvert de la Phase 2.
 
 ## 10. Questions ouvertes
 

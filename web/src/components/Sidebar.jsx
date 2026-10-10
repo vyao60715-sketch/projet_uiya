@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, Package, ClipboardList, Wrench,
-  ClipboardCheck, BarChart2, Users, LogOut, Bell
+  ClipboardCheck, BarChart2, Users, LogOut, Bell, Tags
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
@@ -18,6 +18,10 @@ const adminLinks = [
   { to: '/administration', label: 'Administration', icon: Users },
 ]
 
+const gestionLinks = [
+  { to: '/referentiels', label: 'Référentiels', icon: Tags },
+]
+
 export default function Sidebar({ pendingCount = 0 }) {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
@@ -28,6 +32,7 @@ export default function Sidebar({ pendingCount = 0 }) {
   }
 
   const isAdmin = user?.roles?.includes('admin') || user?.role === 'admin'
+  const isGestionnaire = user?.roles?.includes('gestionnaire') || user?.role === 'gestionnaire'
   const initials = user?.name
     ? user.name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase()
     : '??'
@@ -66,6 +71,24 @@ export default function Sidebar({ pendingCount = 0 }) {
                 {pendingCount}
               </span>
             )}
+          </NavLink>
+        ))}
+
+        {(isAdmin || isGestionnaire) && gestionLinks.map(({ to, label, icon: Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            style={({ isActive }) => ({
+              display: 'flex', alignItems: 'center', gap: 10,
+              minHeight: 42, padding: '0 12px', borderRadius: 8,
+              color: isActive ? '#fff' : '#C9D2CF',
+              background: isActive ? '#2A4148' : 'transparent',
+              fontWeight: isActive ? 500 : 400,
+              textDecoration: 'none', fontSize: 14,
+            })}
+          >
+            <Icon size={16} />
+            {label}
           </NavLink>
         ))}
 
