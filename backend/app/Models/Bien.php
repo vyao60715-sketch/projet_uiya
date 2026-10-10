@@ -25,6 +25,9 @@ class Bien extends Model
         'fin_garantie' => 'date',
         'prochaine_maintenance' => 'date',
         'prix' => 'integer',
+        'duree_garantie_mois' => 'integer',
+        'categorie_id' => 'integer',
+        'fournisseur_id' => 'integer',
     ];
 
     protected static function booted(): void
@@ -48,11 +51,11 @@ class Bien extends Model
                 $acquisition = \Carbon\Carbon::parse($bien->date_acquisition);
 
                 if ($bien->duree_garantie_mois) {
-                    $bien->fin_garantie = $acquisition->copy()->addMonths($bien->duree_garantie_mois);
+                    $bien->fin_garantie = $acquisition->copy()->addMonths((int) $bien->duree_garantie_mois);
                 }
 
                 if ($categorie && $categorie->periodicite_maintenance_mois) {
-                    $bien->prochaine_maintenance = $acquisition->copy()->addMonths($categorie->periodicite_maintenance_mois);
+                    $bien->prochaine_maintenance = $acquisition->copy()->addMonths((int) $categorie->periodicite_maintenance_mois);
                 }
             }
         });
