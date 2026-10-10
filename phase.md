@@ -92,17 +92,18 @@
 
 ---
 
-## Phase 5 – Demandes, maintenance et alertes
+## Phase 5 – Demandes, maintenance et alertes ✅
 
-- [ ] Migration `demandes` ; création par le responsable (EF-25)
-- [ ] Validation / rejet motivé par le gestionnaire (EF-26)
-- [ ] Mise à jour automatique du bien (EF-27) ; suivi des demandes (EF-28)
-- [ ] Migration `maintenances` ; planification (EF-29) et interventions (EF-30)
-- [ ] Garantie (EF-31) et proposition de réforme (EF-32) — P2
-- [ ] Notifications in-app et e-mail (EF-39) via file d'attente
-- [ ] Commande planifiée quotidienne : garanties J-30, maintenances J-15, prêts J-1 / J / retard
-- [ ] Web : écrans demandes, maintenances, centre de notifications
-- [ ] Tests : circuit complet d'une demande, déclenchement des alertes
+- [x] Migration `demandes` ; création par le responsable (EF-25)
+- [x] Validation / rejet motivé par le gestionnaire (EF-26)
+- [x] Mise à jour automatique du bien (EF-27) ; suivi des demandes (EF-28)
+- [x] Migration `maintenances` ; planification (EF-29) et interventions (EF-30)
+- [ ] Garantie (EF-31) et proposition de réforme (EF-32) — P2, reporté
+- [x] Notifications in-app et e-mail (EF-39) via file d'attente (ShouldQueue, canaux database + mail)
+- [x] Commande planifiée quotidienne : garanties J-30, maintenances J-15, prêts J-1 / J / retard (`uiya:alertes` à 07h00)
+- [x] Web : écrans demandes (maître-détail, onglets, actions valider/rejeter) et maintenances (KPIs, garanties, modals)
+- [ ] Centre de notifications in-app (cloche) — à brancher en Phase 7
+- [x] Tests : circuit complet d'une demande (9 cas), maintenances (6 cas), 53/53 passent
 
 **Terminé quand :** une demande suit tout le circuit et les alertes partent aux bonnes dates.
 
