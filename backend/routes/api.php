@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\BatimentController;
 use App\Http\Controllers\Api\BienController;
 use App\Http\Controllers\Api\CategorieController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\DemandeController;
 use App\Http\Controllers\Api\FournisseurController;
+use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\SalleController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UserController;
@@ -38,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/notifications', [DashboardController::class, 'notifications'])->name('notifications');
+    Route::post('/notifications/{id}/lue', [DashboardController::class, 'marquerLue']);
 
     /*
     |--------------------------------------------------------------------------
@@ -107,6 +110,37 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/biens/{bien}/transferer', [AffectationController::class, 'transferer']);
         Route::post('/biens/{bien}/preter', [AffectationController::class, 'preter']);
         Route::post('/biens/{bien}/retour', [AffectationController::class, 'retour']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | DEMANDES (EF-25 à EF-28)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware('permission:creer_demandes|gerer_demandes')->group(function () {
+        Route::get('/demandes', [DemandeController::class, 'index']);
+    });
+
+    Route::middleware('permission:creer_demandes')->group(function () {
+        Route::post('/demandes', [DemandeController::class, 'store']);
+    });
+
+    Route::middleware('permission:gerer_demandes')->group(function () {
+        Route::post('/demandes/{demande}/valider', [DemandeController::class, 'valider']);
+        Route::post('/demandes/{demande}/rejeter', [DemandeController::class, 'rejeter']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | MAINTENANCES ET GARANTIES (EF-29 à EF-31)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware('permission:gerer_maintenances')->group(function () {
+        Route::get('/maintenances', [MaintenanceController::class, 'index']);
+        Route::post('/maintenances', [MaintenanceController::class, 'store']);
+        Route::put('/maintenances/{maintenance}', [MaintenanceController::class, 'update']);
     });
 
     /*

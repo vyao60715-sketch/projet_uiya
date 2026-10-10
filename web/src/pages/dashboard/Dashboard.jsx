@@ -32,7 +32,10 @@ export default function Dashboard() {
   const [data, setData] = useState(EMPTY)
 
   useEffect(() => {
-    getDashboard().then((r) => setData((prev) => ({ ...prev, ...r.data.data }))).catch(() => {})
+    getDashboard().then((r) => {
+      const { indicateurs = {} } = r.data.data ?? {}
+      setData((prev) => ({ ...prev, ...indicateurs }))
+    }).catch(() => {})
   }, [])
 
   const pct = data.campagne ? Math.round((data.campagne.controles / data.campagne.total) * 100) : 0

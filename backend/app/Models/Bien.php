@@ -92,4 +92,14 @@ class Bien extends Model
     {
         return $this->hasMany(Mouvement::class)->orderByDesc('date');
     }
+
+    public function demandes(): HasMany
+    {
+        return $this->hasMany(Demande::class);
+    }
+
+    public function maintenances(): HasMany
+    {
+        return $this->hasMany(Maintenance::class);
+    }
 }
