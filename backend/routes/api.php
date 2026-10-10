@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AffectationController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatimentController;
 use App\Http\Controllers\Api\BienController;
@@ -86,6 +87,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/biens/{bien}/photo', [BienController::class, 'photo']);
         Route::get('/biens/{bien}/qr', [BienController::class, 'qr']);
         Route::get('/biens/{bien}/etiquette', [BienController::class, 'etiquette']);
+        Route::get('/biens/{bien}/historique', [AffectationController::class, 'historique']);
     });
 
     Route::middleware('permission:gerer_biens')->group(function () {
@@ -96,12 +98,30 @@ Route::middleware('auth:sanctum')->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | COMPTES UTILISATEURS (EF-04) — admin uniquement
+    | AFFECTATIONS ET MOUVEMENTS (EF-20 à EF-23)
     |--------------------------------------------------------------------------
     */
 
-    Route::middleware('role:admin')->group(function () {
+    Route::middleware('permission:gerer_affectations')->group(function () {
+        Route::post('/biens/{bien}/affecter', [AffectationController::class, 'affecter']);
+        Route::post('/biens/{bien}/transferer', [AffectationController::class, 'transferer']);
+        Route::post('/biens/{bien}/preter', [AffectationController::class, 'preter']);
+        Route::post('/biens/{bien}/retour', [AffectationController::class, 'retour']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | COMPTES UTILISATEURS (EF-04)
+    |--------------------------------------------------------------------------
+    */
+
+    // Lecture ouverte au gestionnaire aussi : besoin de choisir un responsable
+    // lors d'une affectation/transfert/prêt (EF-20 à EF-22).
+    Route::middleware('role:admin|gestionnaire')->group(function () {
         Route::get('/users', [UserController::class, 'index']);
+    });
+
+    Route::middleware('role:admin')->group(function () {
         Route::post('/users', [UserController::class, 'store']);
         Route::put('/users/{user}', [UserController::class, 'update']);
         Route::delete('/users/{user}', [UserController::class, 'destroy']);

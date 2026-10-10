@@ -80,13 +80,13 @@
 
 ## Phase 4 – Affectations et mouvements
 
-- [ ] Migrations `affectations` et `mouvements`
-- [ ] Service central des statuts (`BienStatutService`) avec transitions autorisées
-- [ ] Affectation (EF-20), transfert (EF-21), prêt et retour (EF-22)
-- [ ] Historique automatique (EF-23)
-- [ ] Fiche de mouvement imprimable (EF-24) — P3
-- [ ] Web : écrans d'affectation, de transfert, de prêt ; onglet historique
-- [ ] Tests : règles RG-03, RG-04, RG-07
+- [x] Migrations `affectations` et `mouvements`
+- [x] Service central des statuts (`BienStatutService`) avec transitions autorisées
+- [x] Affectation (EF-20), transfert (EF-21), prêt et retour (EF-22)
+- [x] Historique automatique (EF-23)
+- [ ] Fiche de mouvement imprimable (EF-24) — P3, pas encore fait
+- [x] Web : écrans d'affectation, de transfert, de prêt ; onglet historique
+- [x] Tests : règles RG-03, RG-04, RG-07
 
 **Terminé quand :** chaque mouvement apparaît dans l'historique et les transitions interdites sont refusées.
 

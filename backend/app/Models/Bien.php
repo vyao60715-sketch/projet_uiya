@@ -6,6 +6,8 @@ use App\Services\NumeroInventaireService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
 class Bien extends Model
@@ -74,5 +76,20 @@ class Bien extends Model
     public function creePar(): BelongsTo
     {
         return $this->belongsTo(User::class, 'cree_par');
+    }
+
+    public function affectations(): HasMany
+    {
+        return $this->hasMany(Affectation::class);
+    }
+
+    public function affectationActuelle(): HasOne
+    {
+        return $this->hasOne(Affectation::class)->whereNull('date_retour_effective')->latestOfMany();
+    }
+
+    public function mouvements(): HasMany
+    {
+        return $this->hasMany(Mouvement::class)->orderByDesc('date');
     }
 }

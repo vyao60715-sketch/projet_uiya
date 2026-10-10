@@ -39,10 +39,23 @@ class UserManagementTest extends TestCase
         $this->assertDatabaseHas('users', ['email' => 'gestionnaire@uiya.ci']);
     }
 
-    public function test_non_admin_cannot_manage_users(): void
+    public function test_gestionnaire_can_list_users_but_not_create_them(): void
     {
         $gestionnaire = $this->userWithRole('gestionnaire');
         Sanctum::actingAs($gestionnaire, ['*']);
+
+        // Lecture autorisée : besoin de choisir un responsable lors d'une affectation.
+        $this->getJson('/api/users')->assertStatus(200);
+
+        $this->postJson('/api/users', [
+            'name' => 'X', 'email' => 'x@x.ci', 'password' => 'Password123', 'role' => 'agent',
+        ])->assertStatus(403);
+    }
+
+    public function test_responsable_cannot_list_or_manage_users(): void
+    {
+        $responsable = $this->userWithRole('responsable');
+        Sanctum::actingAs($responsable, ['*']);
 
         $this->getJson('/api/users')->assertStatus(403);
         $this->postJson('/api/users', [
