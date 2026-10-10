@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile – Scanner un QR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9FD0DA}a:hover{color:#C6E6EC}
+.corner{position:absolute;width:44px;height:44px;border-color:#6FB3C1;border-style:solid;border-width:0}
+</style>
+</head>
+<body>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D1719; font-family: 'IBM Plex Sans', sans-serif; color: #fff; display: flex; flex-direction: column; overflow: hidden; position: relative">
+  <header style="padding: 52px 16px 12px; display: flex; justify-content: space-between; align-items: center">
+    <a href="MobileAccueil.html" aria-label="Retour" style="width: 44px; height: 44px; border-radius: 12px; background: #1F2E32; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <div style="font-size: 17px; font-weight: 600">Scanner un bien</div>
+    <button type="button" aria-label="Lampe torche" style="width: 44px; height: 44px; border-radius: 12px; background: #1F2E32; border: 0; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true"><path d="M9 2h6l-1 6h-4zM10 8h4v12a2 2 0 0 1-4 0z"></path></svg></button>
+  </header>
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; padding: 0 24px; background: radial-gradient(circle at 50% 42%, #2A3A3E 0%, #0D1719 70%)">
+    <div style="position: relative; width: 260px; height: 260px">
+      <div class="corner" style="top: 0; left: 0; border-top-width: 4px; border-left-width: 4px; border-top-left-radius: 14px"></div>
+      <div class="corner" style="top: 0; right: 0; border-top-width: 4px; border-right-width: 4px; border-top-right-radius: 14px"></div>
+      <div class="corner" style="bottom: 0; left: 0; border-bottom-width: 4px; border-left-width: 4px; border-bottom-left-radius: 14px"></div>
+      <div class="corner" style="bottom: 0; right: 0; border-bottom-width: 4px; border-right-width: 4px; border-bottom-right-radius: 14px"></div>
+      <div style="position: absolute; left: 18px; right: 18px; top: 128px; height: 2px; background: #6FB3C1; box-shadow: 0 0 12px #6FB3C1"></div>
+    </div>
+    <div style="text-align: center">
+      <div style="font-size: 17px; font-weight: 500">Placez le code QR dans le cadre</div>
+      <div style="font-size: 14px; color: #A9B6B3; margin-top: 6px">La fiche du bien s'ouvre automatiquement</div>
+    </div>
+  </div>
+  <div style="background: #17262B; border-radius: 22px 22px 0 0; padding: 22px 20px 34px; display: flex; flex-direction: column; gap: 12px">
+    <div style="font-size: 14px; color: #B8C3C0">Code illisible ou étiquette abîmée ?</div>
+    <label for="num" style="position: absolute; left: -9999px">Numéro d'inventaire</label>
+    <div style="display: flex; gap: 8px">
+      <input id="num" placeholder="UIYA-INF-2024-0142" style="flex: 1; min-width: 0; min-height: 50px; border-radius: 10px; border: 1px solid #3A4E54; background: #0F1D20; color: #fff; padding: 0 14px; font-family: 'IBM Plex Mono', monospace; font-size: 15px">
+      <a href="MobileFiche.html" style="display: flex; align-items: center; justify-content: center; min-width: 96px; min-height: 50px; border-radius: 10px; background: #0E5A6B; color: #fff; text-decoration: none; font-weight: 500">Chercher</a>
+    </div>
+    <a href="MobileFiche.html" style="font-size: 14px; text-align: center; margin-top: 4px">Simuler un scan réussi</a>
+  </div>
+</div>
+</body>
+</html>

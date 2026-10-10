@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #17262B;
+  background: #F4F5F2;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: #0E5A6B; }
+a:hover { color: #08404C; }
+
+button, input, select, textarea {
+  font-family: inherit;
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#17262B;background:#F4F5F2}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.app{display:flex;flex-wrap:wrap;min-height:850px}
+.side{flex:1 1 220px;background:#17262B;color:#E8ECEA;padding:24px 16px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:0 8px}
+.logo{width:34px;height:34px;border-radius:8px;background:#0E5A6B;display:flex;align-items:center;justify-content:center;color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:42px;padding:0 12px;border-radius:8px;color:#C9D2CF;text-decoration:none;font-size:14px}
+.nav a:hover{background:#21343A;color:#fff}
+.nav a.on{background:#2A4148;color:#fff;font-weight:500}
+.count{background:#C47A1C;color:#17262B;border-radius:999px;font-size:12px;font-weight:600;padding:1px 8px}
+.me{display:flex;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #2A3B40;font-size:14px}
+.av{width:34px;height:34px;border-radius:50%;background:#2A4148;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.role{font-size:12px;color:#8E9C99}
+.main{flex:999 1 560px;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box}
+.h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#5A676B;font-size:14px;margin:4px 0 0}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:10px;padding:20px;box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:0 14px;border-radius:8px;border:1px solid #0E5A6B;background:#0E5A6B;color:#fff;font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.btn.ghost{background:#fff;color:#0E5A6B}
+.filters{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.f label{display:block;font-size:12px;font-weight:500;color:#5A676B;margin-bottom:4px}
+.f input,.f select{min-height:40px;border:1px solid #C9CFC9;border-radius:8px;padding:0 12px;font:inherit;font-size:14px;background:#fff;color:#17262B;box-sizing:border-box}
+.reports{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.rp{display:flex;flex-direction:column;gap:10px}
+.rp h2{margin:0;font-size:15px;font-weight:600}
+.rp p{margin:0;font-size:13px;color:#5A676B;line-height:1.5;flex:1}
+.rp .acts{display:flex;gap:8px}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Menu principal">
+    <div class="brand"><div class="logo">U</div><div>UIYA · Patrimoine</div></div>
+    <div class="nav">
+      <a href="Dashboard.html">Tableau de bord</a>
+      <a href="Biens.html">Biens</a>
+      <a href="Demandes.html">Demandes <span class="count">4</span></a>
+      <a href="Maintenance.html">Maintenance</a>
+      <a href="Inventaire.html">Inventaires</a>
+      <a href="Rapports.html" class="on">Rapports</a>
+      <a href="Utilisateurs.html">Administration</a>
+    </div>
+    <div class="me"><div class="av">GP</div><div><div>Gestionnaire</div><div class="role">Service du patrimoine</div></div></div>
+  </nav>
+  <main class="main">
+    <div><h1 class="h1">Rapports</h1><p class="sub">Générés automatiquement, exportables en PDF et Excel</p></div>
+    <div class="card filters">
+      <div class="f"><label for="du">Du</label><input id="du" type="date" value="2026-01-01"></div>
+      <div class="f"><label for="au">Au</label><input id="au" type="date" value="2026-10-10"></div>
+      <div class="f"><label for="srv">Service</label><select id="srv"><option>Tous</option><option>Scolarité</option><option>Comptabilité</option></select></div>
+      <div class="f"><label for="cat">Catégorie</label><select id="cat"><option>Toutes</option><option>Informatique</option><option>Mobilier</option></select></div>
+    </div>
+    <div class="reports">
+      <div class="card rp"><h2>Liste générale des biens</h2><p>Tous les biens et leurs caractéristiques, par catégorie, service, salle et statut.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+      <div class="card rp"><h2>Biens par service</h2><p>Biens affectés à chaque service, avec salle et responsable.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+      <div class="card rp"><h2>Mouvements</h2><p>Affectations, transferts, prêts et retours sur la période.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+      <div class="card rp"><h2>Maintenances</h2><p>Interventions, prestataires et coûts, préventives et correctives.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+      <div class="card rp"><h2>Garanties</h2><p>Biens sous garantie et dates d'expiration.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+      <div class="card rp"><h2>Rapport d'inventaire</h2><p>Résultat d'une campagne : présents, absents, déplacés, détériorés, non répertoriés.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+      <div class="card rp"><h2>Biens réformés ou perdus</h2><p>Biens sortis du patrimoine, avec date et motif.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+      <div class="card rp"><h2>Statistiques</h2><p>Répartitions et évolutions par catégorie, service et statut.</p><div class="acts"><button class="btn" type="button">PDF</button><button class="btn ghost" type="button">Excel</button></div></div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

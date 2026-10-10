@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maintenance et garanties</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#17262B;background:#F4F5F2}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.app{display:flex;flex-wrap:wrap;min-height:900px}
+.side{flex:1 1 220px;background:#17262B;color:#E8ECEA;padding:24px 16px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:0 8px}
+.logo{width:34px;height:34px;border-radius:8px;background:#0E5A6B;display:flex;align-items:center;justify-content:center;color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:42px;padding:0 12px;border-radius:8px;color:#C9D2CF;text-decoration:none;font-size:14px}
+.nav a:hover{background:#21343A;color:#fff}
+.nav a.on{background:#2A4148;color:#fff;font-weight:500}
+.count{background:#C47A1C;color:#17262B;border-radius:999px;font-size:12px;font-weight:600;padding:1px 8px}
+.me{display:flex;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #2A3B40;font-size:14px}
+.av{width:34px;height:34px;border-radius:50%;background:#2A4148;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.role{font-size:12px;color:#8E9C99}
+.main{flex:999 1 560px;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box}
+.h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#5A676B;font-size:14px;margin:4px 0 0}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:10px;padding:20px;box-sizing:border-box}
+.ct{font-size:15px;font-weight:600;margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:8px;border:1px solid #0E5A6B;background:#0E5A6B;color:#fff;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.btn.ghost{background:#fff;color:#0E5A6B}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:13px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.b-ok{background:#E3F0E4;color:#2F6B3A}.b-warn{background:#FBEFD9;color:#8A510A}.b-bad{background:#F8E4DF;color:#A23B2A}.b-info{background:#E3EFF1;color:#0E5A6B}.b-mute{background:#ECEEEA;color:#4A5659}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:500;color:#5A676B;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid #DDE1DC;white-space:nowrap}
+td{padding:12px;border-bottom:1px solid #EEF0EC;vertical-align:middle}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{min-height:38px;padding:0 14px;border:1px solid #DDE1DC;border-radius:999px;background:#fff;font:inherit;font-size:14px;color:#3D4A4E;cursor:pointer}
+.seg button.on{background:#17262B;border-color:#17262B;color:#fff}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #EEF0EC;font-size:14px}
+.row:last-child{border-bottom:0}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Menu principal">
+    <div class="brand"><div class="logo">U</div><div>UIYA · Patrimoine</div></div>
+    <div class="nav">
+      <a href="Dashboard.html">Tableau de bord</a>
+      <a href="Biens.html">Biens</a>
+      <a href="Demandes.html">Demandes <span class="count">4</span></a>
+      <a href="Maintenance.html" class="on">Maintenance</a>
+      <a href="Inventaire.html">Inventaires</a>
+      <a href="Rapports.html">Rapports</a>
+      <a href="Utilisateurs.html">Administration</a>
+    </div>
+    <div class="me"><div class="av">GP</div><div><div>Gestionnaire</div><div class="role">Service du patrimoine</div></div></div>
+  </nav>
+  <main class="main">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-end">
+      <div><h1 class="h1">Maintenance et garanties</h1><p class="sub">Interventions préventives et correctives, échéances de garantie</p></div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap"><button class="btn ghost" type="button">Planifier une maintenance</button><button class="btn" type="button">+ Enregistrer une intervention</button></div>
+    </div>
+    <div class="grid2">
+      <section class="card">
+        <h2 class="ct">Maintenances préventives à venir</h2>
+        <div class="row"><div><div>Climatiseur split – Salle B12</div><div class="mono" style="color: #5A676B">UIYA-CLI-2024-0017</div></div><span class="badge b-warn">25/10 · J-15</span></div>
+        <div class="row"><div><div>Groupe électrogène – Bâtiment A</div><div class="mono" style="color: #5A676B">UIYA-ELE-2022-0002</div></div><span class="badge b-info">02/11</span></div>
+        <div class="row"><div><div>Photocopieur Canon – Reprographie</div><div class="mono" style="color: #5A676B">UIYA-INF-2023-0051</div></div><span class="badge b-info">15/11</span></div>
+      </section>
+      <section class="card">
+        <h2 class="ct">Garanties qui expirent</h2>
+        <div class="row"><div><div>Imprimante HP LaserJet – Accueil Scolarité</div><div class="mono" style="color: #5A676B">UIYA-INF-2025-0088</div></div><span class="badge b-warn">09/11 · J-30</span></div>
+        <div class="row"><div><div>Vidéoprojecteur Epson – Amphi B</div><div class="mono" style="color: #5A676B">UIYA-AUD-2024-0021</div></div><span class="badge b-info">18/12</span></div>
+        <div class="row"><div><div>Ordinateurs Lenovo (lot de 12)</div><div class="mono" style="color: #5A676B">UIYA-INF-2024-0120 à 0131</div></div><span class="badge b-info">05/02/2027</span></div>
+      </section>
+    </div>
+    <section class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px"><h2 class="ct" style="margin: 0">Interventions</h2><div class="seg"><button type="button" class="on">En cours · 12</button><button type="button">Terminées</button><button type="button">Toutes</button></div></div>
+      <div class="tw"><table>
+        <thead><tr><th>Bien</th><th>Type</th><th>Prestataire</th><th>Début</th><th>Coût (FCFA)</th><th>Garantie</th><th>Statut</th></tr></thead>
+        <tbody>
+          <tr><td><div>Ordinateur Lenovo</div><div class="mono" style="color: #5A676B">UIYA-INF-2024-0132</div></td><td>Corrective</td><td>[Prestataire]</td><td>10/10/2026</td><td>—</td><td><span class="badge b-ok">Couverte</span></td><td><span class="badge b-warn">En cours</span></td></tr>
+          <tr><td><div>Climatiseur – Salle C03</div><div class="mono" style="color: #5A676B">UIYA-CLI-2021-0006</div></td><td>Corrective</td><td>[Prestataire]</td><td>02/10/2026</td><td>85 000</td><td><span class="badge b-mute">Hors garantie</span></td><td><span class="badge b-warn">En cours</span></td></tr>
+          <tr><td><div>Photocopieur Canon</div><div class="mono" style="color: #5A676B">UIYA-INF-2023-0051</div></td><td>Préventive</td><td>[Prestataire]</td><td>28/09/2026</td><td>40 000</td><td><span class="badge b-mute">Hors garantie</span></td><td><span class="badge b-ok">Terminée</span></td></tr>
+          <tr><td><div>Vidéoprojecteur Epson</div><div class="mono" style="color: #5A676B">UIYA-AUD-2019-0003</div></td><td>Corrective</td><td>[Prestataire]</td><td>20/09/2026</td><td>—</td><td><span class="badge b-mute">Hors garantie</span></td><td><span class="badge b-bad">Irréparable · réforme proposée</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

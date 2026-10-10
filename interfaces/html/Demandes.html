@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demandes à valider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#17262B;background:#F4F5F2}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.app{display:flex;flex-wrap:wrap;min-height:950px}
+.side{flex:1 1 220px;background:#17262B;color:#E8ECEA;padding:24px 16px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:0 8px}
+.logo{width:34px;height:34px;border-radius:8px;background:#0E5A6B;display:flex;align-items:center;justify-content:center;color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:42px;padding:0 12px;border-radius:8px;color:#C9D2CF;text-decoration:none;font-size:14px}
+.nav a:hover{background:#21343A;color:#fff}
+.nav a.on{background:#2A4148;color:#fff;font-weight:500}
+.count{background:#C47A1C;color:#17262B;border-radius:999px;font-size:12px;font-weight:600;padding:1px 8px}
+.me{display:flex;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #2A3B40;font-size:14px}
+.av{width:34px;height:34px;border-radius:50%;background:#2A4148;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.role{font-size:12px;color:#8E9C99}
+.main{flex:999 1 560px;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box}
+.h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#5A676B;font-size:14px;margin:4px 0 0}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:10px;padding:20px;box-sizing:border-box}
+.ct{font-size:15px;font-weight:600;margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:8px;border:1px solid #0E5A6B;background:#0E5A6B;color:#fff;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.btn.reject{background:#fff;color:#A23B2A;border-color:#E0B4AA}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{min-height:38px;padding:0 14px;border:1px solid #DDE1DC;border-radius:999px;background:#fff;font:inherit;font-size:14px;color:#3D4A4E;cursor:pointer}
+.seg button.on{background:#17262B;border-color:#17262B;color:#fff}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:13px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.b-warn{background:#FBEFD9;color:#8A510A}.b-bad{background:#F8E4DF;color:#A23B2A}.b-info{background:#E3EFF1;color:#0E5A6B}.b-mute{background:#ECEEEA;color:#4A5659}
+.item{display:flex;gap:14px;padding:14px;border-radius:8px;border:1px solid transparent;cursor:pointer}
+.item.on{border-color:#0E5A6B;background:#F3F8F9}
+.item .t{font-size:14px;font-weight:500}
+.item .m{font-size:13px;color:#5A676B;margin-top:3px}
+.ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;font-size:12px;font-weight:600}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px 20px;margin:0}
+.dl dt{font-size:12px;color:#5A676B;margin-bottom:3px}
+.dl dd{margin:0;font-size:14px}
+.layout{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+textarea{width:100%;box-sizing:border-box;border:1px solid #C9CFC9;border-radius:8px;padding:10px 12px;font:inherit;font-size:14px;color:#17262B}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Menu principal">
+    <div class="brand"><div class="logo">U</div><div>UIYA · Patrimoine</div></div>
+    <div class="nav">
+      <a href="Dashboard.html">Tableau de bord</a>
+      <a href="Biens.html">Biens</a>
+      <a href="Demandes.html" class="on">Demandes <span class="count">4</span></a>
+      <a href="Maintenance.html">Maintenance</a>
+      <a href="Inventaire.html">Inventaires</a>
+      <a href="Rapports.html">Rapports</a>
+      <a href="Utilisateurs.html">Administration</a>
+    </div>
+    <div class="me"><div class="av">GP</div><div><div>Gestionnaire</div><div class="role">Service du patrimoine</div></div></div>
+  </nav>
+  <main class="main">
+    <div><h1 class="h1">Demandes</h1><p class="sub">Transferts, pannes et pertes signalés par les responsables de service</p></div>
+    <div class="seg" role="tablist"><button type="button" class="on">En attente · 4</button><button type="button">Validées</button><button type="button">Rejetées</button><button type="button">Toutes</button></div>
+    <div class="layout">
+      <section class="card" style="flex: 1 1 340px; padding: 10px; display: flex; flex-direction: column; gap: 4px">
+        <div class="item on"><div class="ico" style="background: #FBEFD9; color: #8A510A">PA</div><div><div class="t">Panne – Ordinateur de bureau Lenovo</div><div class="m">Service Scolarité · il y a 2 h</div></div></div>
+        <div class="item"><div class="ico" style="background: #E3EFF1; color: #0E5A6B">TR</div><div><div class="t">Transfert – 6 chaises vers Salle A04</div><div class="m">Service Comptabilité · hier</div></div></div>
+        <div class="item"><div class="ico" style="background: #F8E4DF; color: #A23B2A">PE</div><div><div class="t">Perte – Vidéoprojecteur Epson EB-E01</div><div class="m">Département Informatique · hier</div></div></div>
+        <div class="item"><div class="ico" style="background: #FBEFD9; color: #8A510A">PA</div><div><div class="t">Panne – Climatiseur Salle B12</div><div class="m">Bibliothèque · 07/10</div></div></div>
+      </section>
+      <section class="card" style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap">
+          <div><div style="font-size: 13px; color: #5A676B">Demande n° DEM-2026-0193</div><h2 style="margin: 4px 0 0; font-size: 20px; font-weight: 600">Panne – Ordinateur de bureau Lenovo</h2></div>
+          <span class="badge b-warn">Soumise</span>
+        </div>
+        <dl class="dl">
+          <div><dt>Bien concerné</dt><dd class="mono"><a href="FicheBien.html">UIYA-INF-2024-0132</a></dd></div>
+          <div><dt>Service · Salle</dt><dd>Scolarité · Bureau S02</dd></div>
+          <div><dt>Demandeur</dt><dd>Responsable du service Scolarité</dd></div>
+          <div><dt>Date</dt><dd>10/10/2026 à 08:42</dd></div>
+          <div><dt>Garantie</dt><dd><span class="badge b-info">Sous garantie jusqu'au 05/02/2027</span></dd></div>
+        </dl>
+        <div><div style="font-size: 12px; color: #5A676B; margin-bottom: 6px">Motif</div><p style="margin: 0; font-size: 14px; line-height: 1.6; background: #F6F7F4; border-radius: 8px; padding: 12px 14px">L'ordinateur ne démarre plus depuis ce matin, écran noir après le logo. Le poste est utilisé pour les inscriptions.</p></div>
+        <div style="display: flex; gap: 10px"><div style="width: 120px; height: 84px; border-radius: 8px; background: #ECEEEA; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5A676B">[Photo jointe]</div></div>
+        <div style="border-top: 1px solid #EEF0EC; padding-top: 18px; display: flex; flex-direction: column; gap: 12px">
+          <label for="motif" style="font-size: 13px; font-weight: 500">Décision du gestionnaire <span style="color: #5A676B; font-weight: 400">(motif obligatoire en cas de rejet)</span></label>
+          <textarea id="motif" rows="3" placeholder="Commentaire ou motif du rejet…"></textarea>
+          <p style="margin: 0; font-size: 13px; color: #3D4A4E">En validant, le bien passe au statut <strong>En maintenance</strong> et le responsable est notifié.</p>
+          <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap"><button class="btn reject" type="button">Rejeter</button><button class="btn" type="button">Valider la demande</button></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

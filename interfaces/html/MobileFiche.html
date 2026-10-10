@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile – Fiche après scan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:14px;padding:16px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #EEF0EC;font-size:14px}
+.kv:last-child{border-bottom:0}
+.kv span:first-child{color:#5A676B}
+.kv span:last-child{text-align:right}
+</style>
+</head>
+<body>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F2; font-family: 'IBM Plex Sans', sans-serif; color: #17262B; display: flex; flex-direction: column; overflow: hidden">
+  <header style="padding: 52px 16px 12px; display: flex; align-items: center; gap: 12px">
+    <a href="MobileScanner.html" aria-label="Retour au scanner" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #DDE1DC; background: #fff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17262B" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <div style="font-size: 17px; font-weight: 600">Bien identifié</div>
+    <span style="margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 13px; color: #2F6B3A; background: #E3F0E4; border-radius: 999px; padding: 5px 10px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Scan réussi</span>
+  </header>
+  <main style="flex: 1; padding: 4px 16px 0; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <div style="height: 150px; border-radius: 14px; background: #E2E6E1; display: flex; align-items: center; justify-content: center; color: #5A676B; font-size: 13px">[Photo du bien]</div>
+    <div>
+      <div style="font-size: 20px; font-weight: 600; line-height: 1.25">Ordinateur portable Dell Latitude 5440</div>
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5A676B">UIYA-INF-2024-0142</span><span style="padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 500; background: #E3EFF1; color: #0E5A6B">Affecté</span></div>
+    </div>
+    <section class="card" style="padding-top: 4px; padding-bottom: 4px">
+      <div class="kv"><span>Service</span><span>Département Informatique</span></div>
+      <div class="kv"><span>Salle prévue</span><span>Bâtiment B · B05</span></div>
+      <div class="kv"><span>Catégorie</span><span>Informatique</span></div>
+      <div class="kv"><span>État enregistré</span><span>Bon</span></div>
+      <div class="kv"><span>Garantie</span><span>jusqu'au 12/03/2027</span></div>
+      <div class="kv"><span>Dernier contrôle</span><span>08/10/2026</span></div>
+    </section>
+  </main>
+  <div style="padding: 14px 16px 30px; display: flex; flex-direction: column; gap: 10px; background: #F4F5F2">
+    <a href="MobileControle.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 12px; background: #0E5A6B; color: #fff; text-decoration: none; font-size: 16px; font-weight: 600">Contrôler pour l'inventaire</a>
+    <a href="MobileSignalement.html" style="display: flex; align-items: center; justify-content: center; min-height: 50px; border-radius: 12px; border: 1px solid #0E5A6B; background: #fff; color: #0E5A6B; text-decoration: none; font-size: 15px; font-weight: 500">Signaler un problème</a>
+  </div>
+</div>
+</body>
+</html>

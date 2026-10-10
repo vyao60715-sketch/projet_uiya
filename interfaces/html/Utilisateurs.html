@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administration des comptes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#17262B;background:#F4F5F2}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.app{display:flex;flex-wrap:wrap;min-height:900px}
+.side{flex:1 1 220px;background:#17262B;color:#E8ECEA;padding:24px 16px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:0 8px}
+.logo{width:34px;height:34px;border-radius:8px;background:#0E5A6B;display:flex;align-items:center;justify-content:center;color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:42px;padding:0 12px;border-radius:8px;color:#C9D2CF;text-decoration:none;font-size:14px}
+.nav a:hover{background:#21343A;color:#fff}
+.nav a.on{background:#2A4148;color:#fff;font-weight:500}
+.me{display:flex;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #2A3B40;font-size:14px}
+.av{width:34px;height:34px;border-radius:50%;background:#2A4148;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.role{font-size:12px;color:#8E9C99}
+.main{flex:999 1 560px;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box}
+.h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#5A676B;font-size:14px;margin:4px 0 0}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:10px;padding:20px;box-sizing:border-box}
+.ct{font-size:15px;font-weight:600;margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:8px;border:1px solid #0E5A6B;background:#0E5A6B;color:#fff;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.btn.ghost{background:#fff;color:#0E5A6B}
+.tabs{display:flex;gap:4px;border-bottom:1px solid #DDE1DC;flex-wrap:wrap}
+.tabs button{min-height:42px;padding:0 14px;border:0;background:none;font:inherit;font-size:14px;color:#5A676B;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:#0E5A6B;border-bottom-color:#0E5A6B;font-weight:500}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.kl{font-size:13px;color:#5A676B}
+.kv{font-size:30px;font-weight:600;margin-top:6px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.b-ok{background:#E3F0E4;color:#2F6B3A}.b-bad{background:#F8E4DF;color:#A23B2A}.b-mute{background:#ECEEEA;color:#4A5659}.b-info{background:#E3EFF1;color:#0E5A6B}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:500;color:#5A676B;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid #DDE1DC;white-space:nowrap}
+td{padding:12px;border-bottom:1px solid #EEF0EC;vertical-align:middle}
+.lk{border:0;background:none;font:inherit;font-size:14px;color:#0E5A6B;cursor:pointer;padding:6px 8px;min-height:36px}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Menu principal">
+    <div class="brand"><div class="logo">U</div><div>UIYA · Patrimoine</div></div>
+    <div class="nav">
+      <a href="Utilisateurs.html">Tableau de bord</a>
+      <a href="Utilisateurs.html" class="on">Comptes et rôles</a>
+      <a href="Utilisateurs.html">Catégories</a>
+      <a href="Utilisateurs.html">Services et salles</a>
+      <a href="Utilisateurs.html">Paramètres des alertes</a>
+      <a href="Utilisateurs.html">Journal d'audit</a>
+      <a href="Rapports.html">Rapports</a>
+    </div>
+    <div class="me"><div class="av">AD</div><div><div>Administrateur</div><div class="role">Direction informatique</div></div></div>
+  </nav>
+  <main class="main">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-end">
+      <div><h1 class="h1">Comptes et rôles</h1><p class="sub">Gestion des utilisateurs, de leurs rôles et de leur service</p></div>
+      <button class="btn" type="button">+ Nouveau compte</button>
+    </div>
+    <div class="kpis">
+      <div class="card"><div class="kl">Utilisateurs actifs</div><div class="kv">42</div></div>
+      <div class="card"><div class="kl">Gestionnaires</div><div class="kv">3</div></div>
+      <div class="card"><div class="kl">Responsables de service</div><div class="kv">14</div></div>
+      <div class="card"><div class="kl">Agents d'inventaire</div><div class="kv">8</div></div>
+    </div>
+    <section class="card" style="padding-top: 8px">
+      <div class="tabs" role="tablist"><button type="button" class="on">Utilisateurs</button><button type="button">Rôles et permissions</button></div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 8px"><input type="search" aria-label="Rechercher un utilisateur" placeholder="Nom ou e-mail" style="flex: 1 1 240px; min-height: 40px; border: 1px solid #C9CFC9; border-radius: 8px; padding: 0 12px; font: inherit; font-size: 14px"><select aria-label="Filtrer par rôle" style="min-height: 40px; border: 1px solid #C9CFC9; border-radius: 8px; padding: 0 12px; font: inherit; font-size: 14px"><option>Tous les rôles</option><option>Administrateur</option><option>Gestionnaire</option><option>Responsable</option><option>Agent d'inventaire</option></select></div>
+      <div class="tw"><table>
+        <thead><tr><th>Utilisateur</th><th>Rôle</th><th>Service</th><th>Dernière connexion</th><th>Statut</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><div>[Nom Prénom]</div><div style="font-size: 13px; color: #5A676B">gestionnaire@uiya.ci</div></td><td><span class="badge b-info">Gestionnaire</span></td><td>Service du patrimoine</td><td>Aujourd'hui 08:12</td><td><span class="badge b-ok">Actif</span></td><td><button class="lk" type="button">Modifier</button></td></tr>
+          <tr><td><div>[Nom Prénom]</div><div style="font-size: 13px; color: #5A676B">scolarite@uiya.ci</div></td><td><span class="badge b-info">Responsable</span></td><td>Scolarité</td><td>Aujourd'hui 07:55</td><td><span class="badge b-ok">Actif</span></td><td><button class="lk" type="button">Modifier</button></td></tr>
+          <tr><td><div>[Nom Prénom]</div><div style="font-size: 13px; color: #5A676B">agent1@uiya.ci</div></td><td><span class="badge b-info">Agent d'inventaire</span></td><td>Service du patrimoine</td><td>Hier 17:40</td><td><span class="badge b-ok">Actif</span></td><td><button class="lk" type="button">Modifier</button></td></tr>
+          <tr><td><div>[Nom Prénom]</div><div style="font-size: 13px; color: #5A676B">compta@uiya.ci</div></td><td><span class="badge b-info">Responsable</span></td><td>Comptabilité</td><td>08/10/2026</td><td><span class="badge b-bad">Bloqué (5 échecs)</span></td><td><button class="lk" type="button">Débloquer</button></td></tr>
+          <tr><td><div>[Nom Prénom]</div><div style="font-size: 13px; color: #5A676B">ancien.agent@uiya.ci</div></td><td><span class="badge b-info">Agent d'inventaire</span></td><td>—</td><td>12/05/2026</td><td><span class="badge b-mute">Désactivé</span></td><td><button class="lk" type="button">Réactiver</button></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

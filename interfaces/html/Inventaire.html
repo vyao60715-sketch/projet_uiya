@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campagne d'inventaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#17262B;background:#F4F5F2}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.app{display:flex;flex-wrap:wrap;min-height:1000px}
+.side{flex:1 1 220px;background:#17262B;color:#E8ECEA;padding:24px 16px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:0 8px}
+.logo{width:34px;height:34px;border-radius:8px;background:#0E5A6B;display:flex;align-items:center;justify-content:center;color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:42px;padding:0 12px;border-radius:8px;color:#C9D2CF;text-decoration:none;font-size:14px}
+.nav a:hover{background:#21343A;color:#fff}
+.nav a.on{background:#2A4148;color:#fff;font-weight:500}
+.count{background:#C47A1C;color:#17262B;border-radius:999px;font-size:12px;font-weight:600;padding:1px 8px}
+.me{display:flex;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #2A3B40;font-size:14px}
+.av{width:34px;height:34px;border-radius:50%;background:#2A4148;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.role{font-size:12px;color:#8E9C99}
+.main{flex:999 1 560px;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box}
+.h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#5A676B;font-size:14px;margin:4px 0 0}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:10px;padding:20px;box-sizing:border-box}
+.ct{font-size:15px;font-weight:600;margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:8px;border:1px solid #0E5A6B;background:#0E5A6B;color:#fff;font:inherit;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none}
+.btn.ghost{background:#fff;color:#0E5A6B}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.st{border-radius:10px;padding:14px 16px}
+.st .l{font-size:13px}
+.st .v{font-size:28px;font-weight:600;margin-top:4px}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:13px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.b-ok{background:#E3F0E4;color:#2F6B3A}.b-warn{background:#FBEFD9;color:#8A510A}.b-bad{background:#F8E4DF;color:#A23B2A}.b-mute{background:#ECEEEA;color:#4A5659}.b-info{background:#E3EFF1;color:#0E5A6B}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:500;color:#5A676B;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid #DDE1DC;white-space:nowrap}
+td{padding:12px;border-bottom:1px solid #EEF0EC;vertical-align:middle}
+.agent{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #EEF0EC;font-size:14px}
+.agent:last-child{border-bottom:0}
+.bar{height:8px;border-radius:4px;background:#ECEEEA;overflow:hidden;width:120px}
+.layout{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Menu principal">
+    <div class="brand"><div class="logo">U</div><div>UIYA · Patrimoine</div></div>
+    <div class="nav">
+      <a href="Dashboard.html">Tableau de bord</a>
+      <a href="Biens.html">Biens</a>
+      <a href="Demandes.html">Demandes <span class="count">4</span></a>
+      <a href="Maintenance.html">Maintenance</a>
+      <a href="Inventaire.html" class="on">Inventaires</a>
+      <a href="Rapports.html">Rapports</a>
+      <a href="Utilisateurs.html">Administration</a>
+    </div>
+    <div class="me"><div class="av">GP</div><div><div>Gestionnaire</div><div class="role">Service du patrimoine</div></div></div>
+  </nav>
+  <main class="main">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-end">
+      <div><div style="font-size: 13px; color: #5A676B">Inventaires / Campagne en cours</div><h1 class="h1" style="margin-top: 6px">Inventaire annuel – Bâtiment A</h1><p class="sub">Du 06/10 au 17/10/2026 · Salles A01 à A12 · 3 agents</p></div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap"><button class="btn ghost" type="button">Exporter le rapport</button><button class="btn" type="button">Clôturer la campagne</button></div>
+    </div>
+    <section class="card">
+      <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px"><span><strong>256</strong> biens contrôlés sur 400</span><span>64 %</span></div>
+      <div style="height: 14px; border-radius: 7px; background: #ECEEEA; overflow: hidden"><div style="width: 64%; height: 100%; background: #0E5A6B"></div></div>
+    </section>
+    <div class="stats">
+      <div class="st" style="background: #E3F0E4"><div class="l" style="color: #2F6B3A">Présents</div><div class="v" style="color: #2F6B3A">240</div></div>
+      <div class="st" style="background: #F8E4DF"><div class="l" style="color: #A23B2A">Absents</div><div class="v" style="color: #A23B2A">5</div></div>
+      <div class="st" style="background: #FBEFD9"><div class="l" style="color: #8A510A">Déplacés</div><div class="v" style="color: #8A510A">8</div></div>
+      <div class="st" style="background: #ECEEEA"><div class="l" style="color: #4A5659">Détériorés</div><div class="v" style="color: #3D4A4E">3</div></div>
+      <div class="st" style="background: #E3EFF1"><div class="l" style="color: #0E5A6B">Non répertoriés</div><div class="v" style="color: #0E5A6B">2</div></div>
+      <div class="st" style="background: #fff; border: 1px solid #DDE1DC"><div class="l" style="color: #5A676B">Restant à contrôler</div><div class="v">144</div></div>
+    </div>
+    <div class="layout">
+      <section class="card" style="flex: 999 1 520px; min-width: 0">
+        <h2 class="ct">Écarts et anomalies</h2>
+        <div class="tw"><table>
+          <thead><tr><th>N° inventaire</th><th>Désignation</th><th>Salle prévue</th><th>Constat</th><th>Agent</th><th></th></tr></thead>
+          <tbody>
+            <tr><td class="mono">UIYA-AUD-2022-0011</td><td>Vidéoprojecteur Epson</td><td>A03</td><td><span class="badge b-bad">Absent</span></td><td>Agent 2</td><td><button class="btn ghost" type="button" style="min-height: 34px">Traiter</button></td></tr>
+            <tr><td class="mono">UIYA-MOB-2021-0207</td><td>Armoire métallique</td><td>A02</td><td><span class="badge b-warn">Déplacé → A07</span></td><td>Agent 1</td><td><button class="btn ghost" type="button" style="min-height: 34px">Traiter</button></td></tr>
+            <tr><td class="mono">UIYA-MOB-2020-0119</td><td>Chaise de bureau</td><td>A05</td><td><span class="badge b-mute">Détérioré</span></td><td>Agent 3</td><td><button class="btn ghost" type="button" style="min-height: 34px">Traiter</button></td></tr>
+            <tr><td class="mono">—</td><td>Écran Samsung 24" (sans étiquette)</td><td>—</td><td><span class="badge b-info">Non répertorié · A09</span></td><td>Agent 1</td><td><button class="btn ghost" type="button" style="min-height: 34px">Enregistrer</button></td></tr>
+            <tr><td class="mono">UIYA-INF-2023-0077</td><td>Onduleur APC</td><td>A11</td><td><span class="badge b-bad">Absent</span></td><td>Agent 2</td><td><button class="btn ghost" type="button" style="min-height: 34px">Traiter</button></td></tr>
+          </tbody>
+        </table></div>
+        <p style="margin: 14px 0 0; font-size: 13px; color: #5A676B">Un bien absent n'est pas déclaré perdu automatiquement : le gestionnaire décide après vérification.</p>
+      </section>
+      <section class="card" style="flex: 1 1 280px">
+        <h2 class="ct">Agents</h2>
+        <div class="agent"><div><div>Agent 1</div><div style="font-size: 12px; color: #5A676B">Salles A01–A04 · synchronisé il y a 5 min</div></div><div class="bar"><div style="width: 82%; height: 100%; background: #0E5A6B"></div></div></div>
+        <div class="agent"><div><div>Agent 2</div><div style="font-size: 12px; color: #8A510A">Salles A05–A08 · 12 contrôles hors ligne</div></div><div class="bar"><div style="width: 58%; height: 100%; background: #0E5A6B"></div></div></div>
+        <div class="agent"><div><div>Agent 3</div><div style="font-size: 12px; color: #5A676B">Salles A09–A12 · synchronisé il y a 1 h</div></div><div class="bar"><div style="width: 51%; height: 100%; background: #0E5A6B"></div></div></div>
+        <button class="btn ghost" type="button" style="width: 100%; margin-top: 14px">+ Nouvelle campagne</button>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tableau de bord – Gestionnaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#17262B;background:#F4F5F2}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.app{display:flex;flex-wrap:wrap;min-height:1000px}
+.side{flex:1 1 220px;background:#17262B;color:#E8ECEA;padding:24px 16px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:0 8px}
+.logo{width:34px;height:34px;border-radius:8px;background:#0E5A6B;display:flex;align-items:center;justify-content:center;color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:42px;padding:0 12px;border-radius:8px;color:#C9D2CF;text-decoration:none;font-size:14px}
+.nav a:hover{background:#21343A;color:#fff}
+.nav a.on{background:#2A4148;color:#fff;font-weight:500}
+.count{background:#C47A1C;color:#17262B;border-radius:999px;font-size:12px;font-weight:600;padding:1px 8px}
+.me{display:flex;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #2A3B40;font-size:14px}
+.av{width:34px;height:34px;border-radius:50%;background:#2A4148;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.role{font-size:12px;color:#8E9C99}
+.main{flex:999 1 560px;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.top{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end}
+.h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#5A676B;font-size:14px;margin:4px 0 0}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:10px;padding:20px;box-sizing:border-box}
+.ct{font-size:15px;font-weight:600;margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:8px;border:1px solid #0E5A6B;background:#0E5A6B;color:#fff;font:inherit;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer}
+.btn.ghost{background:#fff;color:#0E5A6B}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.kl{font-size:13px;color:#5A676B}
+.kv{font-size:32px;font-weight:600;margin-top:6px}
+.kn{font-size:12px;color:#5A676B;margin-top:4px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:13px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.b-ok{background:#E3F0E4;color:#2F6B3A}.b-info{background:#E3EFF1;color:#0E5A6B}.b-warn{background:#FBEFD9;color:#8A510A}.b-bad{background:#F8E4DF;color:#A23B2A}.b-mute{background:#ECEEEA;color:#4A5659}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #EEF0EC;font-size:14px}
+.row:last-child{border-bottom:0}
+.bar{height:10px;border-radius:5px;background:#ECEEEA;overflow:hidden}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Menu principal">
+    <div class="brand"><div class="logo">U</div><div>UIYA · Patrimoine</div></div>
+    <div class="nav">
+      <a href="Dashboard.html" class="on">Tableau de bord</a>
+      <a href="Biens.html">Biens</a>
+      <a href="Demandes.html">Demandes <span class="count">4</span></a>
+      <a href="Maintenance.html">Maintenance</a>
+      <a href="Inventaire.html">Inventaires</a>
+      <a href="Rapports.html">Rapports</a>
+      <a href="Utilisateurs.html">Administration</a>
+    </div>
+    <div class="me"><div class="av">GP</div><div><div>Gestionnaire</div><div class="role">Service du patrimoine</div></div></div>
+  </nav>
+  <main class="main">
+    <div class="top">
+      <div><h1 class="h1">Tableau de bord</h1><p class="sub">Vue d'ensemble du patrimoine mobilier</p></div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap"><a class="btn ghost" href="Inventaire.html">Lancer un inventaire</a><a class="btn" href="NouveauBien.html">+ Nouveau bien</a></div>
+    </div>
+    <div class="kpis">
+      <div class="card"><div class="kl">Total des biens</div><div class="kv">1 248</div><div class="kn">dans 14 services</div></div>
+      <div class="card"><div class="kl">Affectés</div><div class="kv">1 012</div><div class="kn">dont 23 en prêt</div></div>
+      <div class="card"><div class="kl">En maintenance</div><div class="kv">37</div><div class="kn">12 correctives en cours</div></div>
+      <div class="card" style="border-color: #E7C48C"><div class="kl">Demandes en attente</div><div class="kv" style="color: #8A510A">4</div><div class="kn">à traiter</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h2 class="ct">Alertes à venir</h2>
+        <div class="row"><div><div>Fin de garantie – Imprimante HP LaserJet</div><div class="mono" style="color: #5A676B">UIYA-INF-2025-0088</div></div><span class="badge b-warn">dans 30 j</span></div>
+        <div class="row"><div><div>Maintenance préventive – Climatiseur Salle B12</div><div class="mono" style="color: #5A676B">UIYA-CLI-2024-0017</div></div><span class="badge b-info">dans 15 j</span></div>
+        <div class="row"><div><div>Retour de prêt – Vidéoprojecteur Epson</div><div class="mono" style="color: #5A676B">UIYA-AUD-2023-0005</div></div><span class="badge b-warn">demain</span></div>
+        <div class="row"><div><div>Prêt non rendu – Ordinateur portable Dell</div><div class="mono" style="color: #5A676B">UIYA-INF-2024-0142</div></div><span class="badge b-bad">3 j de retard</span></div>
+      </div>
+      <div class="card">
+        <h2 class="ct">Répartition par statut</h2>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 14px">
+          <div><div style="display: flex; justify-content: space-between; margin-bottom: 6px"><span>Affectés</span><span>1 012</span></div><div class="bar"><div style="width: 81%; height: 100%; background: #0E5A6B"></div></div></div>
+          <div><div style="display: flex; justify-content: space-between; margin-bottom: 6px"><span>Disponibles</span><span>142</span></div><div class="bar"><div style="width: 11%; height: 100%; background: #0E5A6B"></div></div></div>
+          <div><div style="display: flex; justify-content: space-between; margin-bottom: 6px"><span>En maintenance</span><span>37</span></div><div class="bar"><div style="width: 3%; height: 100%; background: #0E5A6B"></div></div></div>
+          <div><div style="display: flex; justify-content: space-between; margin-bottom: 6px"><span>Réformés</span><span>51</span></div><div class="bar"><div style="width: 4%; height: 100%; background: #0E5A6B"></div></div></div>
+          <div><div style="display: flex; justify-content: space-between; margin-bottom: 6px"><span>Perdus</span><span>6</span></div><div class="bar"><div style="width: 1%; height: 100%; background: #0E5A6B"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: baseline"><h2 class="ct">Demandes en attente</h2><a href="Demandes.html" style="font-size: 14px">Tout voir</a></div>
+        <div class="row"><div><div>Panne – Ordinateur de bureau</div><div style="font-size: 13px; color: #5A676B">Service Scolarité · il y a 2 h</div></div><span class="badge b-warn">Soumise</span></div>
+        <div class="row"><div><div>Transfert – 6 chaises vers Salle A04</div><div style="font-size: 13px; color: #5A676B">Service Comptabilité · hier</div></div><span class="badge b-warn">Soumise</span></div>
+        <div class="row"><div><div>Perte – Vidéoprojecteur</div><div style="font-size: 13px; color: #5A676B">Département Informatique · hier</div></div><span class="badge b-warn">Soumise</span></div>
+      </div>
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: baseline"><h2 class="ct">Campagne en cours</h2><a href="Inventaire.html" style="font-size: 14px">Ouvrir</a></div>
+        <div style="font-size: 14px; margin-bottom: 8px">Inventaire annuel – Bâtiment A</div>
+        <div class="bar" style="height: 14px; border-radius: 7px"><div style="width: 64%; height: 100%; background: #0E5A6B"></div></div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px; color: #5A676B; margin-top: 8px"><span>256 / 400 biens contrôlés</span><span>64 %</span></div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px"><span class="badge b-bad">5 absents</span><span class="badge b-warn">8 déplacés</span><span class="badge b-mute">3 détériorés</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

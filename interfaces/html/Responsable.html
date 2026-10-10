@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espace responsable de service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',sans-serif;color:#17262B;background:#F4F5F2}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.app{display:flex;flex-wrap:wrap;min-height:950px}
+.side{flex:1 1 220px;background:#17262B;color:#E8ECEA;padding:24px 16px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:0 8px}
+.logo{width:34px;height:34px;border-radius:8px;background:#0E5A6B;display:flex;align-items:center;justify-content:center;color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:42px;padding:0 12px;border-radius:8px;color:#C9D2CF;text-decoration:none;font-size:14px}
+.nav a:hover{background:#21343A;color:#fff}
+.nav a.on{background:#2A4148;color:#fff;font-weight:500}
+.me{display:flex;gap:10px;align-items:center;padding:12px 8px;border-top:1px solid #2A3B40;font-size:14px}
+.av{width:34px;height:34px;border-radius:50%;background:#2A4148;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.role{font-size:12px;color:#8E9C99}
+.main{flex:999 1 560px;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:24px;box-sizing:border-box}
+.top{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end}
+.h1{font-size:26px;font-weight:600;margin:0}
+.sub{color:#5A676B;font-size:14px;margin:4px 0 0}
+.card{background:#fff;border:1px solid #DDE1DC;border-radius:10px;padding:20px;box-sizing:border-box}
+.ct{font-size:15px;font-weight:600;margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:8px;border:1px solid #0E5A6B;background:#0E5A6B;color:#fff;font:inherit;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer}
+.btn.ghost{background:#fff;color:#0E5A6B}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.kl{font-size:13px;color:#5A676B}
+.kv{font-size:32px;font-weight:600;margin-top:6px}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:13px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.b-ok{background:#E3F0E4;color:#2F6B3A}.b-info{background:#E3EFF1;color:#0E5A6B}.b-warn{background:#FBEFD9;color:#8A510A}.b-bad{background:#F8E4DF;color:#A23B2A}.b-mute{background:#ECEEEA;color:#4A5659}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:500;color:#5A676B;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid #DDE1DC;white-space:nowrap}
+td{padding:12px;border-bottom:1px solid #EEF0EC;vertical-align:middle}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #EEF0EC;font-size:14px}
+.row:last-child{border-bottom:0}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Menu principal">
+    <div class="brand"><div class="logo">U</div><div>UIYA · Patrimoine</div></div>
+    <div class="nav">
+      <a href="Responsable.html" class="on">Mon service</a>
+      <a href="Responsable.html">Biens du service</a>
+      <a href="Responsable.html">Mes demandes</a>
+      <a href="Responsable.html">Historique des mouvements</a>
+    </div>
+    <div class="me"><div class="av">RS</div><div><div>Responsable</div><div class="role">Service Scolarité</div></div></div>
+  </nav>
+  <main class="main">
+    <div class="top">
+      <div><h1 class="h1">Service Scolarité</h1><p class="sub">Biens affectés à votre service et suivi de vos demandes</p></div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap"><button class="btn ghost" type="button">Signaler une panne</button><button class="btn ghost" type="button">Déclarer une perte</button><button class="btn" type="button">Demander un transfert</button></div>
+    </div>
+    <div class="kpis">
+      <div class="card"><div class="kl">Biens du service</div><div class="kv">86</div></div>
+      <div class="card"><div class="kl">En maintenance</div><div class="kv">3</div></div>
+      <div class="card"><div class="kl">Demandes en cours</div><div class="kv">2</div></div>
+    </div>
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px"><h2 class="ct" style="margin: 0">Biens du service</h2><label style="display: flex; align-items: center; gap: 8px; font-size: 14px">Rechercher <input type="search" placeholder="Désignation ou numéro" style="min-height: 38px; border: 1px solid #C9CFC9; border-radius: 8px; padding: 0 12px; font: inherit; font-size: 14px"></label></div>
+      <div class="tw"><table>
+        <thead><tr><th>N° inventaire</th><th>Désignation</th><th>Salle</th><th>Statut</th><th>État</th><th></th></tr></thead>
+        <tbody>
+          <tr><td class="mono">UIYA-INF-2024-0131</td><td>Ordinateur de bureau Lenovo</td><td>Bureau S02</td><td><span class="badge b-info">Affecté</span></td><td>Bon</td><td><a href="FicheBien.html">Voir</a></td></tr>
+          <tr><td class="mono">UIYA-INF-2024-0132</td><td>Ordinateur de bureau Lenovo</td><td>Bureau S02</td><td><span class="badge b-warn">En maintenance</span></td><td>Dégradé</td><td><a href="FicheBien.html">Voir</a></td></tr>
+          <tr><td class="mono">UIYA-MOB-2022-0410</td><td>Bureau en bois 160 cm</td><td>Bureau S01</td><td><span class="badge b-info">Affecté</span></td><td>Moyen</td><td><a href="FicheBien.html">Voir</a></td></tr>
+          <tr><td class="mono">UIYA-INF-2025-0088</td><td>Imprimante HP LaserJet</td><td>Accueil</td><td><span class="badge b-info">Affecté</span></td><td>Bon</td><td><a href="FicheBien.html">Voir</a></td></tr>
+          <tr><td class="mono">UIYA-CLI-2023-0009</td><td>Climatiseur split 2 CV</td><td>Bureau S01</td><td><span class="badge b-info">Affecté</span></td><td>Bon</td><td><a href="FicheBien.html">Voir</a></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h2 class="ct">Mes demandes</h2>
+        <div class="row"><div><div>Panne – Ordinateur UIYA-INF-2024-0132</div><div style="font-size: 13px; color: #5A676B">Envoyée il y a 2 h</div></div><span class="badge b-warn">Soumise</span></div>
+        <div class="row"><div><div>Transfert – Armoire vers Salle A04</div><div style="font-size: 13px; color: #5A676B">Envoyée le 02/10</div></div><span class="badge b-ok">Validée</span></div>
+        <div class="row"><div><div>Perte – Agrafeuse électrique</div><div style="font-size: 13px; color: #5A676B">Rejetée : bien retrouvé en Salle B03</div></div><span class="badge b-bad">Rejetée</span></div>
+      </div>
+      <div class="card">
+        <h2 class="ct">Derniers mouvements</h2>
+        <div class="row"><div>Armoire métallique → Salle A04</div><span style="font-size: 13px; color: #5A676B">03/10</span></div>
+        <div class="row"><div>Ordinateur Lenovo → En maintenance</div><span style="font-size: 13px; color: #5A676B">Aujourd'hui</span></div>
+        <div class="row"><div>Imprimante HP → affectée (Accueil)</div><span style="font-size: 13px; color: #5A676B">15/09</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

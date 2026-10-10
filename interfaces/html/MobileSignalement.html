@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile – Signalement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A6B}a:hover{color:#08404C}
+.lbl{font-size:14px;font-weight:600;margin-bottom:8px}
+.type{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:84px;border:1px solid #C9CFC9;border-radius:12px;background:#fff;font-size:14px;cursor:pointer;text-align:center}
+.type.on{border:2px solid #0E5A6B;background:#E3EFF1;color:#0E5A6B;font-weight:600}
+.type input{position:absolute;opacity:0;pointer-events:none}
+textarea{width:100%;box-sizing:border-box;border:1px solid #C9CFC9;border-radius:10px;padding:10px 12px;font:inherit;font-size:15px;background:#fff;color:#17262B}
+</style>
+</head>
+<body>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F2; font-family: 'IBM Plex Sans', sans-serif; color: #17262B; display: flex; flex-direction: column; overflow: hidden">
+  <header style="padding: 52px 16px 12px; display: flex; align-items: center; gap: 12px">
+    <a href="MobileFiche.html" aria-label="Retour" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #DDE1DC; background: #fff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17262B" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <div><div style="font-size: 17px; font-weight: 600">Nouvelle demande</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A676B">UIYA-INF-2024-0132 · Lenovo · S02</div></div>
+  </header>
+  <form style="flex: 1; padding: 6px 16px 0; display: flex; flex-direction: column; gap: 18px; overflow: hidden">
+    <fieldset style="border: 0; padding: 0; margin: 0">
+      <legend class="lbl">Type de demande</legend>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <label class="type on"><input type="radio" name="t" checked><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.5 6.5l3 3M4 20l6.5-6.5M13 4l7 7-3 3-7-7z"></path></svg>Panne</label>
+        <label class="type"><input type="radio" name="t"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg>Transfert</label>
+        <label class="type"><input type="radio" name="t"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.5-4.5M9 9l4 4M13 9l-4 4"></path></svg>Perte</label>
+      </div>
+    </fieldset>
+    <div>
+      <label class="lbl" for="motif" style="display: block">Décrivez le problème</label>
+      <textarea id="motif" rows="5">L'ordinateur ne démarre plus depuis ce matin, écran noir après le logo.</textarea>
+    </div>
+    <div>
+      <div class="lbl">Photo</div>
+      <div style="display: flex; gap: 10px">
+        <div style="width: 84px; height: 84px; border-radius: 10px; background: #E2E6E1; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5A676B; text-align: center">[Photo]</div>
+        <button type="button" aria-label="Ajouter une photo" style="width: 84px; height: 84px; border-radius: 10px; border: 1.5px dashed #9FB0AB; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E5A6B" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #3D4A4E; background: #E3EFF1; border-radius: 10px; padding: 12px 14px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E5A6B" stroke-width="1.8" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+      <span>Le gestionnaire du patrimoine valide ou rejette votre demande. Vous recevrez une notification avec sa décision.</span>
+    </div>
+  </form>
+  <div style="padding: 14px 16px 30px">
+    <a href="MobileAccueil.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 12px; background: #0E5A6B; color: #fff; text-decoration: none; font-size: 16px; font-weight: 600">Envoyer la demande</a>
+  </div>
+</div>
+</body>
+</html>
