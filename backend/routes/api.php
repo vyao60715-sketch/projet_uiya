@@ -84,6 +84,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/biens/etiquettes/planche', [BienController::class, 'etiquettesPlanche']);
         Route::get('/biens/{bien}', [BienController::class, 'show']);
         Route::get('/biens/{bien}/photo', [BienController::class, 'photo']);
+        Route::get('/biens/{bien}/qr', [BienController::class, 'qr']);
         Route::get('/biens/{bien}/etiquette', [BienController::class, 'etiquette']);
     });
 

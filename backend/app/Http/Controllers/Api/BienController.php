@@ -137,6 +137,11 @@ class BienController extends Controller
         return Storage::disk('local')->response($bien->photo);
     }
 
+    public function qr(Bien $bien)
+    {
+        return response(QrService::svg($bien, 220), 200, ['Content-Type' => 'image/svg+xml']);
+    }
+
     public function etiquette(Bien $bien)
     {
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('etiquettes.unite', [

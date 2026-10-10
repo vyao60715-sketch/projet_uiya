@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import Card from '../../components/Card'
 import Badge from '../../components/Badge'
-import { getBien, getBienByUuid, getBienPhoto, getEtiquette } from '../../api/biens'
+import { getBien, getBienByUuid, getBienPhoto, getBienQr, getEtiquette } from '../../api/biens'
 
 const STATUT_VARIANT = {
   'Disponible': 'ok', 'Affecté': 'info', 'En prêt': 'loan',
@@ -16,6 +16,7 @@ export default function FicheBien() {
   const { id, uuid } = useParams()
   const [bien, setBien] = useState(null)
   const [photoUrl, setPhotoUrl] = useState(null)
+  const [qrUrl, setQrUrl] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -37,6 +38,16 @@ export default function FicheBien() {
     }).catch(() => {})
     return () => { if (url) URL.revokeObjectURL(url) }
   }, [bien?.id, bien?.photo])
+
+  useEffect(() => {
+    if (!bien?.id) return
+    let url
+    getBienQr(bien.id).then((r) => {
+      url = URL.createObjectURL(r.data)
+      setQrUrl(url)
+    }).catch(() => {})
+    return () => { if (url) URL.revokeObjectURL(url) }
+  }, [bien?.id])
 
   const telechargerEtiquette = async () => {
     const res = await getEtiquette(bien.id)
@@ -101,8 +112,11 @@ export default function FicheBien() {
         </Card>
 
         <Card style={{ flex: '1 1 260px' }}>
-          <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 10px' }}>Identifiant QR</h2>
-          <p style={{ margin: 0, fontSize: 13, color: '#5A676B', fontFamily: "'IBM Plex Mono', monospace", wordBreak: 'break-all' }}>{bien.uuid_qr}</p>
+          <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 10px' }}>Code QR</h2>
+          <div style={{ width: 180, height: 180, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', border: '1px solid #DDE1DC', borderRadius: 8 }}>
+            {qrUrl ? <img src={qrUrl} alt="Code QR du bien" style={{ width: 160, height: 160 }} /> : <span style={{ color: '#5A676B', fontSize: 13 }}>Chargement…</span>}
+          </div>
+          <p style={{ margin: '12px 0 0', fontSize: 12, color: '#5A676B', fontFamily: "'IBM Plex Mono', monospace", wordBreak: 'break-all' }}>{bien.uuid_qr}</p>
           <p style={{ margin: '10px 0 0', fontSize: 13, color: '#3D4A4E' }}>Attribué automatiquement à l'enregistrement, unique et immuable.</p>
         </Card>
       </div>
