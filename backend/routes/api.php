@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AffectationController;
+use App\Http\Controllers\Api\AuditController;
 use App\Http\Controllers\Api\CampagneController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatimentController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DemandeController;
 use App\Http\Controllers\Api\FournisseurController;
 use App\Http\Controllers\Api\MaintenanceController;
+use App\Http\Controllers\Api\RapportController;
 use App\Http\Controllers\Api\SalleController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UserController;
@@ -158,6 +160,34 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('role:admin|gestionnaire')->group(function () {
         Route::post('/inventaires', [CampagneController::class, 'store']);
         Route::post('/inventaires/{campagne}/cloturer', [CampagneController::class, 'cloturer']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | RAPPORTS ET EXPORTS (EF-40 / EF-41)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware('role:admin|gestionnaire')->prefix('rapports')->group(function () {
+        Route::get('/biens',               [RapportController::class, 'biens']);
+        Route::get('/biens/export/excel',  [RapportController::class, 'biensExcel']);
+        Route::get('/biens/export/pdf',    [RapportController::class, 'biensPdf']);
+        Route::get('/mouvements',          [RapportController::class, 'mouvements']);
+        Route::get('/maintenances',        [RapportController::class, 'maintenances']);
+        Route::get('/garanties',           [RapportController::class, 'garanties']);
+        Route::get('/inventaire',          [RapportController::class, 'inventaire']);
+        Route::get('/reformes',            [RapportController::class, 'reformes']);
+        Route::get('/statistiques',        [RapportController::class, 'statistiques']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | JOURNAL D'AUDIT (EF-42)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/audit', [AuditController::class, 'index']);
     });
 
     /*

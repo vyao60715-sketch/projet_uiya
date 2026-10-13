@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, Package, ClipboardList, Wrench,
-  ClipboardCheck, BarChart2, Users, LogOut, Bell, Tags
+  ClipboardCheck, BarChart2, Users, LogOut, Bell, Tags, ShieldCheck
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
@@ -16,6 +16,7 @@ const links = [
 
 const adminLinks = [
   { to: '/administration', label: 'Administration', icon: Users },
+  { to: '/audit',          label: 'Journal d\'audit', icon: ShieldCheck },
 ]
 
 const gestionLinks = [

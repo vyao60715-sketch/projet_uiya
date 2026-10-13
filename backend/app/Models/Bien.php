@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Service;
 use Illuminate\Support\Str;
 
 class Bien extends Model
@@ -18,8 +19,9 @@ class Bien extends Model
 
     protected $fillable = [
         'designation', 'categorie_id', 'marque', 'modele', 'numero_serie',
-        'fournisseur_id', 'date_acquisition', 'prix', 'etat', 'statut',
-        'duree_garantie_mois', 'photo', 'observations', 'cree_par',
+        'fournisseur_id', 'date_acquisition', 'prix', 'valeur_acquisition', 'etat', 'statut',
+        'duree_garantie_mois', 'fin_garantie', 'prochaine_maintenance',
+        'photo', 'observations', 'cree_par', 'service_id',
     ];
 
     protected $casts = [
@@ -66,6 +68,11 @@ class Bien extends Model
     public function categorie(): BelongsTo
     {
         return $this->belongsTo(Categorie::class);
+    }
+
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
     }
 
     public function fournisseur(): BelongsTo

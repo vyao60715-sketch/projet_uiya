@@ -21,7 +21,7 @@
 - [x] Analyser l'existant à l'UIYA
 - [x] Rédiger le cahier des charges fonctionnel
 - [x] Créer les fichiers de pilotage (`memoire.md`, `architecture.md`, `cycl.md`, `securite.md`, `phase.md`)
-- [ ] Faire valider le cahier des charges par l'UIYA
+- [x] Faire valider le cahier des charges par l'UIYA
 
 **Terminé quand :** le cahier des charges est validé.
 
@@ -126,13 +126,13 @@
 
 ---
 
-## Phase 7 – Tableaux de bord, rapports et audit
+## Phase 7 – Tableaux de bord, rapports et audit ✅
 
-- [ ] Tableau de bord par rôle (EF-40)
-- [ ] Rapports : liste générale, par service, mouvements, maintenances, garanties, inventaire, réformés / perdus, statistiques
-- [ ] Exports PDF et Excel (EF-41)
-- [ ] Écran de consultation du journal d'audit (EF-42)
-- [ ] Tests : exactitude des chiffres sur un jeu de données connu
+- [x] Tableau de bord par rôle (EF-40) — données réelles, alertes en direct
+- [x] Rapports : liste générale, par service, mouvements, maintenances, garanties, inventaire, réformés/perdus, statistiques (7 endpoints)
+- [x] Exports CSV, impression HTML, Excel (.xlsx) et PDF — boutons intégrés dans l'interface
+- [x] Écran de consultation du journal d'audit (EF-42) — filtres entité/action/date, panneau avant/après
+- [x] Tests : 12 cas (droits accès, chiffres exacts par statut/service, filtres garanties, audit)
 
 **Terminé quand :** chaque rapport s'exporte avec les bons filtres et les bons chiffres.
 

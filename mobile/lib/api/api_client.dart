@@ -5,11 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiClient {
   static const _storage = FlutterSecureStorage();
-  static const _defaultBase = 'http://10.0.2.2:8000/api'; // Android emulator → localhost
+  static const defaultBase = 'http://10.144.85.153:8000/api'; // IP locale du PC
 
   static Future<String> _baseUrl() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('server_url') ?? _defaultBase;
+    return prefs.getString('server_url') ?? defaultBase;
   }
 
   static Future<Map<String, String>> _headers() async {

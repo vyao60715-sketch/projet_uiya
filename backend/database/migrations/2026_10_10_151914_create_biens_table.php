@@ -27,6 +27,8 @@ return new class extends Migration
             $table->date('prochaine_maintenance')->nullable();
             $table->string('photo')->nullable();
             $table->text('observations')->nullable();
+            $table->foreignId('service_id')->nullable()->constrained('services')->nullOnDelete();
+            $table->unsignedBigInteger('valeur_acquisition')->nullable();
             $table->foreignId('cree_par')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
 
