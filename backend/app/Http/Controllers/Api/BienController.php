@@ -63,7 +63,7 @@ class BienController extends Controller
 
     public function show(Bien $bien)
     {
-        $bien->load(['categorie', 'fournisseur', 'creePar']);
+        $bien->load(['categorie', 'fournisseur', 'creePar', 'affectationActuelle.service', 'affectationActuelle.salle']);
 
         return response()->json([
             'data' => $bien,
@@ -74,7 +74,9 @@ class BienController extends Controller
 
     public function showByUuid(string $uuid)
     {
-        $bien = Bien::where('uuid_qr', $uuid)->with(['categorie', 'fournisseur'])->firstOrFail();
+        $bien = Bien::where('uuid_qr', $uuid)
+            ->with(['categorie', 'fournisseur', 'affectationActuelle.service', 'affectationActuelle.salle'])
+            ->firstOrFail();
 
         AuditService::enregistrer('consultation_qr', 'biens', $bien->id);
 
